@@ -1,0 +1,44 @@
+/* font imports */
+/* poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* color variables */
+:root {
+  --blue: #84CCD3;
+  --red: #F86B6B;
+  --green: #BCD098;
+  --yellow: #F5D771;
+  --tan: #B38871;
+  --offwhite: #E1D9CF;
+  --white: #F7F7F5;
+  --black: #253036;
+}
+
+* {
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Roboto', sans-serif;
+  background: var(--offwhite);
+}
+
+.inner-row {
+  height: 100vh;
+}
+
+.primaryBg {
+  background: var(--blue);
+}
+
+.primaryColor {
+  color: var(--blue);
+}
+
+.form-box {
+  background: var(--white);
+}
