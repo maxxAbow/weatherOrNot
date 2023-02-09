@@ -1,5 +1,6 @@
 const express = require('express');
 const sequalize = require('./config/connection');
+const path = require('path');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -15,6 +16,9 @@ app.get('/', (req, res) => res.sendFile(`${__dirname}/views/index.html`)) //rena
 
 // Route for profile page
 app.get('/profile', (req,res) => res.sendFile(`${__dirname}/views/profile.html`))
+
+// Route for scheduler page
+app.get('/scheduler', require('./routes/scheduler'))
 
 // app.use('/login', require('./routes/login'))
 app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`))
