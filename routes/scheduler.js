@@ -1,8 +1,9 @@
 const scheduler = require('express').Router();
+const path = require('path')
 
 scheduler.get('/', (req, res) => {
   console.log(req.method);
-  res.send('Scheduler page');
+  res.sendFile(path.join(__dirname, '../views/scheduler.html'));
 });
 
 module.exports = scheduler;
