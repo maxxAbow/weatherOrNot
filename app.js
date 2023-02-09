@@ -2,6 +2,7 @@ const express = require('express');
 const sequalize = require('./config/connection');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
+const loginRouter = require('./routes/login')
 const profileRouter = require('./routes/profile');
 
 const app = express();
@@ -12,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Route for home page
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, './views/login.html')));
+
+// Route for login page
+app.use('/login', loginRouter);
 
 // Route for profile page
 app.use('/profile', profileRouter);
