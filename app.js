@@ -13,5 +13,8 @@ app.use(express.static('views'))
 // Route for home/login page
 app.get('/', (req, res) => res.sendFile(`${__dirname}/views/index.html`)) //rename this file to index.html
 
+// Route for profile page
+app.get('/profile', (req,res) => res.sendFile(`${__dirname}/views/profile.html`))
+
 // app.use('/login', require('./routes/login'))
 app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`))
