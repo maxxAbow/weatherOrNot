@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Route for home page
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, './views/login.html')));
+app.get('/', (req, res) => res.send('Home Page'));
 
 // Route for login page
 app.use('/login', loginRouter);
