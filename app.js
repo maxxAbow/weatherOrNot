@@ -10,7 +10,6 @@ const app = express();
 app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, 'public')));
 
 // Route for home page
 app.get('/', (req, res) => res.send('Home Page'));
