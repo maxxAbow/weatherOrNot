@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}));
 const PORT = process.env.PORT || 3001;
 
 // Route for home/login page
-app.get('/', (req, res) => res.sendFile(`${__dirname}/views/login.html`))
+// app.get('/', (req, res) => res.sendFile(`${__dirname}/views/login.html`))
 
+app.use('/login', require('./routes/login'))
 app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`))
