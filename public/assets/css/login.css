@@ -17,22 +17,28 @@
 }
 
 * {
-  /* font-family: 'Poppins', sans-serif; */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  color: var(--black);
 }
 
 body {
-  /* font-family: 'Poppins', sans-serif; */
-  font-family: 'Roboto', sans-serif;
-  background: var(--offwhite);
+  font-family: 'Poppins', sans-serif;
+  color: var(--black);
+  background: var(--black);
+}
+
+.btn {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.btn:hover {
+  background: var(--blue);
+  color: var(--white);
 }
 
 .inner-row {
   height: 100vh;
-}
-
-.primaryBg {
-  background: var(--blue);
 }
 
 .primaryColor {
@@ -41,4 +47,5 @@ body {
 
 .form-box {
   background: var(--white);
+  border-radius: 15px;
 }
