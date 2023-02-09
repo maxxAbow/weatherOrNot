@@ -1,10 +1,8 @@
-// const express = require('express');
-// const router = express.Router();
 const login = require('express').Router();
 const path = require('path');
 
 login.get('/', (req,res) => {
-    res.send('Login Page');
+    res.sendFile(path.join(__dirname, '../views/login.html'));
 })
 
 module.exports = login;
