@@ -15,7 +15,8 @@ app.use(express.static('views'))
 app.get('/', (req, res) => res.sendFile(`${__dirname}/views/index.html`)) //rename this file to index.html
 
 // Route for profile page
-app.get('/profile', (req,res) => res.sendFile(`${__dirname}/views/profile.html`))
+// app.get('/profile', (req,res) => res.sendFile(`${__dirname}/views/profile.html`))
+app.get('/profile', require('./routes/profile'))
 
 // Route for scheduler page
 app.get('/scheduler', require('./routes/scheduler'))
