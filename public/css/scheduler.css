@@ -291,6 +291,8 @@ body {
 
 .today-weather {
   background-color: white;
+  font-family: "Poppins", sans-serif;
+  color: #253036;
   width: 80%;
   margin: 0 auto;
   padding: 10px;
