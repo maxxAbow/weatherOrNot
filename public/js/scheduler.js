@@ -1,62 +1,4 @@
-// API KEY
-const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
-
-// Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter
-function getLocation (location) {
-    let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`
-
-    fetch (geocodeUrl)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        let lat = data[0].lat // retrieves latitude
-        let lon = data[0].lon // retrieves longitude
-        let location = data[0].name // retrieves location's name
-
-        // Inserts created variables as arguments for function
-        getWeather(lat, lon, location);
-    })
-}
-
-// Sets initial weather forecast location to be Atlanta WOHOO!!
-getLocation("Atlanta");
-
-// Function invoked to fetch weather for 5 days
-function getWeather(lat, lon, location) {
-  // URL used to fetch weather for 5 days
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&units=imperial`
-
-  fetch (weatherUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Captures Data for weather
-    let date = data.list
-    console.log(date)
-    // Keeps count of elements (dates)
-    let x = 0
-
-    // Loops through all the data, and adds values to weather card elemets
-    for(i=0; i < date.length; i += 8){
-        // cardEl[x].setAttribute(`class`, `text-center align-self-center mt-3 mb-3`)
-        // cardEl[x].setAttribute("style", "font-family: 'Oswald', sans-serif; font-weight: 300")
-        let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
-        let icon = date[i].weather[0].icon; // Weather Icon
-        let temp = date[i].main.temp; // Tempature
-        let wind = date[i].wind.speed; // Wind Speed
-        let humid = date[i].main.humidity;// Humidity
-
-        x++ // Increments the date
-    }
-    // Grabs icon of the weather for the "Present Day"
-    let icon = date[0].weather[0].icon
-   
-  })     
-}
-      
-  
-
-
-const calendar = document.querySelector(".calendar"),
+ const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
   prev = document.querySelector(".prev"),
@@ -494,3 +436,79 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+
+
+// API KEY
+const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
+
+// Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter
+function getLocation (location) {
+    let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`
+
+    fetch (geocodeUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        let lat = data[0].lat // retrieves latitude
+        let lon = data[0].lon // retrieves longitude
+        let location = data[0].name // retrieves location's name
+
+        // Inserts created variables as arguments for function
+        getWeather(lat, lon, location);
+    })
+}
+
+// Sets initial weather forecast location to be Atlanta WOHOO!!
+getLocation("Atlanta");
+
+// Function invoked to fetch weather for 5 days
+function getWeather(lat, lon, location) {
+  // URL used to fetch weather for 5 days
+  let weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&units=imperial`
+
+  fetch (weatherUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Captures Data for weather
+    let date = data.list
+    console.log(date)
+    // Keeps count of elements (dates)
+    let x = 0
+
+    // Loops through all the data, and adds values to weather card elemets
+    for(i=0; i < date.length; i += 8){
+        // cardEl[x].setAttribute(`class`, `text-center align-self-center mt-3 mb-3`)
+        // cardEl[x].setAttribute("style", "font-family: 'Oswald', sans-serif; font-weight: 300")
+        let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
+        let icon = date[i].weather[0].icon; // Weather Icon
+        let temp = date[i].main.temp; // Tempature
+        let wind = date[i].wind.speed; // Wind Speed
+        let humid = date[i].main.humidity;// Humidity
+
+        x++ // Increments the date
+    }
+    // Grabs icon of the weather for the "Present Day"
+    let icon = date[0].weather[0].icon
+   
+  })     
+}
+      
+// CREATE API CALL FOR UNSPLASH WOHOOO =)
+const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4"
+function generateImg() {
+  // Gets the value of the '.city' class element
+  var city = $(".city")[0].innerText
+
+  // The url the api call, which inputs the 'city' variable as a value for the query key
+  var url = `https://api.unsplash.com/search/photos?query=${city}%20cityscape&per_page=1&order_by&client_id=${unsplashKey}`
+
+  fetch(url)
+    .then(response => {return response.json();})
+    .then((data) => {
+      // Retrieves and stores the url from json image
+      var img = data.results[0].urls.full;
+
+      // Sets the style for the <main> element to have a background-image property of the url returned from the api call
+      mainEl.css(`background-image`, `url(${img})`)
+    })
+  }
