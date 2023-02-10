@@ -478,23 +478,20 @@ function getWeather(lat, lon, location) {
     // Captures Data for weather
     let weather = data.weather
     let main = data.main
+    // let wind = data.wind.speed
     console.log(weather)
     console.log(main)
-    // Keeps count of elements (dates)
-    let x = 0
+    
+    // let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
+    let temp = main.temp; // Tempature
+    // let icon = date[i].weather[0].icon; // Weather Icon
+    let wind = data.wind.speed; // Wind Speed
+    let humid = main.humidity;// Humidity
 
-    // Loops through all the data, and adds values to weather card elemets
-    for(i=0; i < date.length; i += 8){
-        // cardEl[x].setAttribute(`class`, `text-center align-self-center mt-3 mb-3`)
-        // cardEl[x].setAttribute("style", "font-family: 'Oswald', sans-serif; font-weight: 300")
-        let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
-        let icon = date[i].weather[0].icon; // Weather Icon
-        let temp = date[i].main.temp; // Tempature
-        let wind = date[i].wind.speed; // Wind Speed
-        let humid = date[i].main.humidity;// Humidity
+    childrenElements[0].innerHTML = `Temperature: ${temp}`
+    childrenElements[1].innerHTML = `Wind: ${wind} MPH`
+    childrenElements[2].innerHTML = `Humidity: ${humid}%`
 
-        x++ // Increments the date
-    }
     // Grabs icon of the weather for the "Present Day"
     // let icon = date[0].weather[0].icon
    
