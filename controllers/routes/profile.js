@@ -5,7 +5,7 @@ const schedulerRouter = require('./scheduler');
 const profile = express.Router();
 
 profile.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/profile.html'));
+    res.sendFile(path.join(__dirname, '../../views/profile.html'));
 });
 
 // Define additional routes for /scheduler within the /profile route
