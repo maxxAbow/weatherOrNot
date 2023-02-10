@@ -293,7 +293,8 @@ body {
   background-color: white;
   font-family: "Poppins", sans-serif;
   color: #253036;
-  width: 80%;
+  /* width: 80%; */
+  width: 60%;
   margin: 0 auto;
   padding: 10px;
   text-align: center;

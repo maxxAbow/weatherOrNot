@@ -484,12 +484,10 @@ function getWeather(lat, lon, location) {
     let icon = weather.icon
     let weatherDescription = weather.description;
 
-    // Grabs icon of the weather for the "Present Day"
+    // Grabs icon of the weather for the "Present Day" and places it in img tag 
     weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`)    
 
-    // let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
     let temp = main.temp; // Tempature
-    // let icon = date[i].weather[0].icon; // Weather Icon
     let wind = data.wind.speed; // Wind Speed
     let humid = main.humidity;// Humidity
 
