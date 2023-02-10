@@ -28,6 +28,13 @@ Events.init(
         timezone: {
             type: DataTypes.STRING,
             allowNull: true,
+        },
+        eventAttendees: {
+           type: DataTypes.ARRAY,
+           allowNull: true,
         }
     }
-)
+);
+
+
+module.exports = Events;
