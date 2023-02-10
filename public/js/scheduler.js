@@ -463,15 +463,17 @@ getLocation("Atlanta");
 
 // Function invoked to fetch weather for 5 days
 function getWeather(lat, lon, location) {
-  // URL used to fetch weather for 5 days
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&units=imperial`
+  // URL used to fetch weather for current date and time
+  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`
 
   fetch (weatherUrl)
   .then(response => response.json())
   .then(data => {
     // Captures Data for weather
-    let date = data.list
-    console.log(date)
+    let weather = data.weather
+    let main = data.main
+    console.log(weather)
+    console.log(main)
     // Keeps count of elements (dates)
     let x = 0
 
@@ -488,7 +490,7 @@ function getWeather(lat, lon, location) {
         x++ // Increments the date
     }
     // Grabs icon of the weather for the "Present Day"
-    let icon = date[0].weather[0].icon
+    // let icon = date[0].weather[0].icon
    
   })     
 }
