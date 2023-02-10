@@ -18,7 +18,7 @@ Events.init(
             allowNull: false,
         },
         eventLocation: {
-            type: DataTypes.GEOGRAPHY,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         eventDescription: {
