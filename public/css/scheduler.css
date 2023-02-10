@@ -295,6 +295,7 @@ body {
   color: #253036;
   /* width: 80%; */
   width: 60%;
+  border-radius: 10px;
   margin: 0 auto;
   padding: 10px;
   text-align: center;
@@ -609,5 +610,9 @@ body {
 
   .right .today-date {
     padding: 20px;
+  }
+
+  .today-weather{
+    width: 100%;
   }
 }
