@@ -30,10 +30,11 @@ Events.init(
             allowNull: true,
         },
         eventAttendees: {
-            type: DataTypes.ARRAY,
-            allowNull: true,
-        },
+           type: DataTypes.ARRAY,
+           allowNull: true,
+        }
     }
 );
+
 
 module.exports = Events;

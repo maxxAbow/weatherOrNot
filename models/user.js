@@ -1,5 +1,6 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
+const { v4: uuidv4 } = require('uuid');
 
 class Users extends Model{}
 
@@ -17,15 +18,15 @@ Users.init(
         type: DataTypes.DATE,
         allowNull: false
         },
-    userID: {
-        type: DataType.INTEGER,
+    uuidv4: {
+        type: DataType.STRING,
         allowNull: false,
-        autoIncrement: true
+        primaryKey: true,
         },
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-        },
+    },
     },
     {
     sequelize,

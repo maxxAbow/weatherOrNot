@@ -1,15 +1,15 @@
 const express = require('express');
-const sequalize = require('./config/connection');
+const sequelize = require('./config/connection');
 // const path = require('path');
 const PORT = process.env.PORT || 3001;
-const loginRouter = require('./controllers/routes/login')
-const profileRouter = require('./controllers/routes/profile');
+const loginRouter = require('./routes/login');
+const profileRouter = require('./routes/profile');
 
 const app = express();
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // Route for home page
 app.get('/', (req, res) => res.send('Home Page'));
