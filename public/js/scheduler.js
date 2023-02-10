@@ -443,6 +443,7 @@ const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
 
 // Retrieves text for city's name
 const cityName = document.querySelector(".city-name").textContent;
+const weatherImg = document.querySelector("#weather-img");
 const weatherInfoEl = document.querySelector(".weather-info");
 const childrenElements = weatherInfoEl.querySelectorAll("*");
 
@@ -466,7 +467,7 @@ function generateWeather (location) {
 
 // Sets initial weather forecast location to be Atlanta WOHOO!!
 generateWeather(cityName);
-[0].icon
+
 // Function invoked to fetch weather for 5 days
 function getWeather(lat, lon, location) {
   // URL used to fetch weather for current date and time
@@ -476,11 +477,14 @@ function getWeather(lat, lon, location) {
   .then(response => response.json())
   .then(data => {
     // Captures Data for weather
-    let weather = data.weather
+    let weather = data.weather;
     let main = data.main
-    // let wind = data.wind.speed
     console.log(weather)
     console.log(main)
+    let icon = weather[0].icon
+
+    // Grabs icon of the weather for the "Present Day"
+    weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`)    
     
     // let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
     let temp = main.temp; // Tempature
@@ -491,9 +495,6 @@ function getWeather(lat, lon, location) {
     childrenElements[0].innerHTML = `Temperature: ${temp}`
     childrenElements[1].innerHTML = `Wind: ${wind} MPH`
     childrenElements[2].innerHTML = `Humidity: ${humid}%`
-
-    // Grabs icon of the weather for the "Present Day"
-    // let icon = date[0].weather[0].icon
    
   })     
 }
