@@ -18,7 +18,7 @@ Events.init(
             allowNull: false,
         },
         eventLocation: {
-            type: DataTypes.GEOGRAPHY,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         eventDescription: {
@@ -28,6 +28,12 @@ Events.init(
         timezone: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
+        eventAttendees: {
+            type: DataTypes.ARRAY,
+            allowNull: true,
+        },
     }
-)
+);
+
+module.exports = Events;
