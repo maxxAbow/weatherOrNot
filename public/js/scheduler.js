@@ -441,6 +441,9 @@ function convertTime(time) {
 // API KEY
 const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
 
+// Retrieves text for city's name
+const cityName = document.querySelector(".city-name").textContent;
+
 // Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter
 function getLocation (location) {
     let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`
@@ -459,7 +462,7 @@ function getLocation (location) {
 }
 
 // Sets initial weather forecast location to be Atlanta WOHOO!!
-getLocation("Atlanta");
+getLocation(cityName);
 
 // Function invoked to fetch weather for 5 days
 function getWeather(lat, lon, location) {
