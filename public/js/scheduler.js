@@ -509,6 +509,6 @@ function generateImg() {
       var img = data.results[0].urls.full;
 
       // Sets the style for the <main> element to have a background-image property of the url returned from the api call
-      mainEl.css(`background-image`, `url(${img})`)
+      // mainEl.css(`background-image`, `url(${img})`)
     })
   }
