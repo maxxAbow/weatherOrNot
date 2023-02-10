@@ -14,12 +14,46 @@ function getLocation (location) {
         let location = data[0].name // retrieves location's name
 
         // Inserts created variables as arguments for function
-        // getWeather(lat, lon, location);
+        getWeather(lat, lon, location);
     })
 }
 
 // Sets initial weather forecast location to be Atlanta WOHOO!!
 getLocation("Atlanta");
+
+// Function invoked to fetch weather for 5 days
+function getWeather(lat, lon, location) {
+  // URL used to fetch weather for 5 days
+  let weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&units=imperial`
+
+  fetch (weatherUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Captures Data for weather
+    let date = data.list
+    console.log(date)
+    // Keeps count of elements (dates)
+    let x = 0
+
+    // Loops through all the data, and adds values to weather card elemets
+    for(i=0; i < date.length; i += 8){
+        // cardEl[x].setAttribute(`class`, `text-center align-self-center mt-3 mb-3`)
+        // cardEl[x].setAttribute("style", "font-family: 'Oswald', sans-serif; font-weight: 300")
+        let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
+        let icon = date[i].weather[0].icon; // Weather Icon
+        let temp = date[i].main.temp; // Tempature
+        let wind = date[i].wind.speed; // Wind Speed
+        let humid = date[i].main.humidity;// Humidity
+
+        x++ // Increments the date
+    }
+    // Grabs icon of the weather for the "Present Day"
+    let icon = date[0].weather[0].icon
+   
+  })     
+}
+      
+  
 
 
 const calendar = document.querySelector(".calendar"),
