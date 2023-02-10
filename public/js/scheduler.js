@@ -477,22 +477,23 @@ function getWeather(lat, lon, location) {
   .then(response => response.json())
   .then(data => {
     // Captures Data for weather
-    let weather = data.weather;
+    let weather = data.weather[0];
     let main = data.main
     console.log(weather)
     console.log(main)
-    let icon = weather[0].icon
+    let icon = weather.icon
+    let weatherDescription = weather.description;
 
     // Grabs icon of the weather for the "Present Day"
     weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`)    
-    
+
     // let day = moment().add(x,`d`).format("M/D/YYYY") // Today's date
     let temp = main.temp; // Tempature
     // let icon = date[i].weather[0].icon; // Weather Icon
     let wind = data.wind.speed; // Wind Speed
     let humid = main.humidity;// Humidity
 
-    childrenElements[0].innerHTML = `Temperature: ${temp}`
+    childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`
     childrenElements[1].innerHTML = `Wind: ${wind} MPH`
     childrenElements[2].innerHTML = `Humidity: ${humid}%`
    
