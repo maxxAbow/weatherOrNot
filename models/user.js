@@ -22,6 +22,10 @@ Users.init(
         allowNull: false,
         autoIncrement: true
         },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        },
     },
     {
     sequelize,
