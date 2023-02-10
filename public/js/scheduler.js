@@ -1,3 +1,27 @@
+// API KEY
+const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
+
+// Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter
+function getLocation (location) {
+    let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`
+
+    fetch (geocodeUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        let lat = data[0].lat // retrieves latitude
+        let lon = data[0].lon // retrieves longitude
+        let location = data[0].name // retrieves location's name
+
+        // Inserts created variables as arguments for function
+        // getWeather(lat, lon, location);
+    })
+}
+
+// Sets initial weather forecast location to be Atlanta WOHOO!!
+getLocation("Atlanta");
+
+
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
