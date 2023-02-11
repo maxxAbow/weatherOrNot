@@ -486,11 +486,13 @@ function getWeather(lat, lon, location) {
 
     // Grabs icon of the weather for the "Present Day" and places it in img tag 
     weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`)    
-
+    
+    // Declares values from API to variables
     let temp = main.temp; // Tempature
     let wind = data.wind.speed; // Wind Speed
     let humid = main.humidity;// Humidity
 
+    // Places values from API to DOM
     childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`
     childrenElements[1].innerHTML = `Wind: ${wind} MPH`
     childrenElements[2].innerHTML = `Humidity: ${humid}%`
@@ -498,6 +500,7 @@ function getWeather(lat, lon, location) {
   })     
 }
       
+// EVERYTHING UNDER HERE IS THE IMG GENERATORFUNCTION/API CALL
 // CREATE API CALL FOR UNSPLASH WOHOOO =)
 const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4"
 function generateImg() {
