@@ -18,8 +18,8 @@ Users.init(
         type: DataTypes.DATE,
         allowNull: false
         },
-    uuidv4: {
-        type: DataType.STRING,
+    userId: {
+        type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
         },

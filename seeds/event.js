@@ -1,12 +1,12 @@
 const sequelize = require('../config/connection');
-const { Events } = require('../models');
+const Events = require('../models/events');
 
 const eventData = [
     {
-        eventName: Bookclub,
-        eventDate: 02-26-2023,
+        eventName: 'Bookclub',
+        eventDate: '2023-02-26',
         eventTime: '18:00:00',
-        eventLocation: Savannah,
+        eventLocation: 'Savannah',
         eventDescription: 'Meeting to discuss The Witchs Heart by Geniveive Gornichec',
     },
 ];
