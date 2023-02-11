@@ -30,10 +30,15 @@ Events.init(
             allowNull: true,
         },
         eventAttendees: {
-           type: DataTypes.ARRAY,
+           type: DataTypes.STRING,
            allowNull: true,
         }
-    }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        modelName: 'events'
+        }
 );
 
 
