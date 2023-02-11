@@ -439,7 +439,7 @@ function convertTime(time) {
 
 
 // API KEY
-const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`
+const apiKey = `d08a795d9cdd7f108bc04f749cd0193c`;
 
 // Retrieves text for city's name
 const cityName = document.querySelector(".city-name").textContent;
@@ -449,20 +449,20 @@ const childrenElements = weatherInfoEl.querySelectorAll("*");
 
 
 // Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter, then invokes getWeather function
-function generateWeather (location) {
-    let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`
+function generateWeather(location) {
+  let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`;
 
-    fetch (geocodeUrl)
+  fetch(geocodeUrl)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
-        let lat = data[0].lat // retrieves latitude
-        let lon = data[0].lon // retrieves longitude
-        let location = data[0].name // retrieves location's name
+      console.log(data);
+      let lat = data[0].lat; // retrieves latitude
+      let lon = data[0].lon; // retrieves longitude
+      let location = data[0].name; // retrieves location's name
 
-        // Inserts created variables as arguments for function
-        getWeather(lat, lon, location);
-    })
+      // Inserts created variables as arguments for function
+      getWeather(lat, lon, location);
+    });
 }
 
 // Sets initial weather forecast location to be Atlanta WOHOO!!
@@ -471,44 +471,44 @@ generateWeather(cityName);
 // Function invoked to fetch weather for 5 days
 function getWeather(lat, lon, location) {
   // URL used to fetch weather for current date and time
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`
+  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`;
 
-  fetch (weatherUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Captures Data for weather
-    let weather = data.weather[0];
-    let main = data.main
-    console.log(weather)
-    console.log(main)
-    let icon = weather.icon
-    let weatherDescription = weather.description;
+  fetch(weatherUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Captures Data for weather
+      let weather = data.weather[0];
+      let main = data.main;
+      console.log(weather);
+      console.log(main);
+      let icon = weather.icon;
+      let weatherDescription = weather.description;
 
-    // Grabs icon of the weather for the "Present Day" and places it in img tag 
-    weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`)    
-    
-    // Declares values from API to variables
-    let temp = main.temp; // Tempature
-    let wind = data.wind.speed; // Wind Speed
-    let humid = main.humidity;// Humidity
+      // Grabs icon of the weather for the "Present Day" and places it in img tag 
+      weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 
-    // Places values from API to DOM
-    childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`
-    childrenElements[1].innerHTML = `Wind: ${wind} MPH`
-    childrenElements[2].innerHTML = `Humidity: ${humid}%`
-   
-  })     
+      // Declares values from API to variables
+      let temp = main.temp; // Tempature
+      let wind = data.wind.speed; // Wind Speed
+      let humid = main.humidity;// Humidity
+
+      // Places values from API to DOM
+      childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+      childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+      childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+
+    });
 }
-      
+
 // EVERYTHING UNDER HERE IS THE IMG GENERATORFUNCTION/API CALL
 // CREATE API CALL FOR UNSPLASH WOHOOO =)
-const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4"
+const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4";
 function generateImg() {
   // Gets the value of the '.city' class element
-  var city = $(".city")[0].innerText
+  var city = $(".city")[0].innerText;
 
   // The url the api call, which inputs the 'city' variable as a value for the query key
-  var url = `https://api.unsplash.com/search/photos?query=${city}%20cityscape&per_page=1&order_by&client_id=${unsplashKey}`
+  var url = `https://api.unsplash.com/search/photos?query=${city}%20cityscape&per_page=1&order_by&client_id=${unsplashKey}`;
 
   fetch(url)
     .then(response => {return response.json();})
@@ -518,5 +518,5 @@ function generateImg() {
 
       // Sets the style for the <main> element to have a background-image property of the url returned from the api call
       // mainEl.css(`background-image`, `url(${img})`)
-    })
-  }
+    });
+}
