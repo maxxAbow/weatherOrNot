@@ -293,12 +293,25 @@ body {
   background-color: white;
   font-family: "Poppins", sans-serif;
   color: #253036;
-  /* width: 80%; */
-  width: 60%;
+  width: 80%;
+  height: 30%;
+  /* width: 60%; */
   border-radius: 10px;
   margin: 0 auto;
   padding: 10px;
   text-align: center;
+}
+
+.city-name h1{
+  margin: 0;
+}
+
+#weather-img{
+  height: 75px;
+}
+
+.weather-info p{
+  margin: 0;
 }
 
 .events {
