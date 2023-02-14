@@ -63,6 +63,8 @@
 * {
   font-family: 'Poppins', sans-serif;
   color: var(--black);
+  animation: transitionInY 0.75s;
+
 }
 
 body {
