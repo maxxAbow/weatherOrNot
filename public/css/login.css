@@ -89,6 +89,9 @@ body {
   animation-timing-function: ease-in-out ;
 
 }
+.opaque {
+  opacity: 0.97;
+}
 
 .btn {
   border: 1px solid var(--blue);
