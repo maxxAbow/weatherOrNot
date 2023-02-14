@@ -1,18 +1,18 @@
 const express = require('express');
-const sequalize = require('./config/connection');
-// const path = require('path');
+const path = require('path');
 const PORT = process.env.PORT || 3001;
-const loginRouter = require('./controllers/routes/login')
-const profileRouter = require('./controllers/routes/profile');
-
 const app = express();
 
 app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const loginRouter = require('./controllers/routes/login')
+const profileRouter = require('./controllers/routes/profile');
+const apiRouter = require('./controllers/api');
+
 // Route for home page
-app.get('/', (req, res) => res.send('Home Page'));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/views/login.html')));
 
 // Route for login page
 app.use('/login', loginRouter);
@@ -20,4 +20,8 @@ app.use('/login', loginRouter);
 // Route for profile page
 app.use('/profile', profileRouter);
 
+//Route for API calls
+app.use('/api', apiRouter);
+
 app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`));
+

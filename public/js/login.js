@@ -1,5 +1,8 @@
 const signinForm = document.querySelector("#signinForm");
 const signupForm = document.querySelector("#signupForm");
+const emailInput = document.querySelector("#emailInput");
+const passwordInput = document.querySelector("#passwordInput");
+const signInButton = document.querySelector("#signInButton");
 
 const showSignup = document.querySelector("#showSignup").addEventListener('click', () => {
   if (signupForm.style.display === "none") {
@@ -17,3 +20,22 @@ const showSignin = document.querySelector("#showSignin").addEventListener('click
     signinForm.style.display = "none";
   }
 });
+
+signInButton.addEventListener('click', async (e) => {
+  e.preventDefault()
+  const emailInputValue = emailInput.value
+  const passwordInputValue = passwordInput.value
+  const response = await fetch('/api/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      emailAddress: emailInputValue,
+      password: passwordInputValue
+    })
+  })
+  const parsedResponse = await response.json()
+  localStorage.setItem('activeUser', JSON.stringify(parsedResponse))
+  window.location.replace('/profile/scheduler')
+})
