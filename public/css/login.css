@@ -4,6 +4,53 @@
 /* roboto */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/* Option to choose either or Transition upon page load */
+@keyframes transitionInX {
+  from {
+      opacity: 0;
+      transform: rotateX(-10deg);
+  }
+
+  to {
+      opacity: 1;
+      transform: rotateX(0);
+  }
+}
+
+/* Option to choose either or Transition upon page load */
+@keyframes transitionInY {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes animate-background{
+  0% {
+      background-image: url(../images/login-images/image3.jpg) ;
+  }
+  20% {
+      background-image: url(../images/login-images/image2.jpg) ;
+  }
+  40% {
+      background-image: url(../images/login-images/image4.jpg) ;
+  }
+  60% {
+      background-image: url(../images/login-images/image5.jpg) ;
+  }
+  80% {
+      background-image: url(../images/login-images/image6.jpg) ;
+  }
+  100% {
+      background-image: url(../images/login-images/image1.jpg) ;
+  }
+}
+
 /* color variables */
 :root {
   --blue: #84CCD3;
@@ -19,12 +66,31 @@
 * {
   font-family: 'Poppins', sans-serif;
   color: var(--black);
+  animation: transitionInY 0.75s;
+
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--black);
-  background: var(--black);
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: 5s;
+
+  animation-name: animate-background;
+  animation-direction: alternate-reverse;
+  animation-duration: 30s ;
+  animation-fill-mode: forwards ;
+  animation-iteration-count: infinite ;
+  animation-play-state: running ;
+  animation-timing-function: ease-in-out ;
+
+}
+.opaque {
+  opacity: 0.97;
 }
 
 .btn {
