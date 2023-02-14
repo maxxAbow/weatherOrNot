@@ -1,8 +1,6 @@
-const express = require('express');
+const profile = require('express').Router();
 const path = require('path')
 const schedulerRouter = require('./scheduler');
-
-const profile = express.Router();
 
 profile.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/profile.html'));
