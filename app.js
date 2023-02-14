@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const loginRouter = require('./controllers/routes/login')
-const profileRouter = require('./controllers/routes/profile');
+const schedulerRouter = require('./controllers/routes/scheduler');
 const apiRouter = require('./controllers/api');
 
 // Route for home page
@@ -18,7 +18,7 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/views/login.html'
 app.use('/login', loginRouter);
 
 // Route for profile page
-app.use('/profile', profileRouter);
+app.use('/scheduler', schedulerRouter);
 
 //Route for API calls
 app.use('/api', apiRouter);
