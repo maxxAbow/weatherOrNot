@@ -51,13 +51,13 @@ Follow these commands to run the command line application:
 :briefcase: <br>
 [Linkedin](https://linkedin.com/in/davidmichaelmackey/)<br>
 
-"### Collaborators
+### Collaborators
 
-    Daikeen Lockett
-    David Mackey
-    Maxx Bowman
-    Victor Rivera
-    Sarah Wattles
+    Daikeen Lockett<br>
+    David Mackey<br>
+    Maxx Bowman<br>
+    Victor Rivera<br>
+    Sarah Wattles<br>
 
 ## Toolset
 
