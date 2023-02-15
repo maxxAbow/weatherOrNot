@@ -53,11 +53,11 @@ Follow these commands to run the command line application:
 
 "### Collaborators
 
-    Daikeen Lockett<br>
-    David Mackey<br>
-    Maxx Bowman<br>
-    Victor Rivera<br>
-    Sarah Wattles<br>
+    Daikeen Lockett
+    David Mackey
+    Maxx Bowman
+    Victor Rivera
+    Sarah Wattles
 
 ## Toolset
 
