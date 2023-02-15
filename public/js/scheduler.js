@@ -296,8 +296,11 @@ addEventTitle.addEventListener("input", (e) => {
 // function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {
   const eventTitle = addEventTitle.value;
-  const eventTimeFrom = addEventFrom.value;
-  const eventTimeTo = addEventTo.value;
+  const eventDate = addEventDate.value;
+  const eventTime = addEventTime.value;
+  const eventLocation = addEventLocation.value;
+  const eventDescription = addEventDescription.value;
+  console.log([eventTitle, eventDate, eventTime, eventLocation, eventDescription])
   if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
     alert("Please fill all the fields");
     return;
