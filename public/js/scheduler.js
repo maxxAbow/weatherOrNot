@@ -301,7 +301,8 @@ addEventSubmit.addEventListener("click", () => {
   const eventLocation = addEventLocation.value;
   const eventDescription = addEventDescription.value;
   console.log([eventTitle, eventDate, eventTime, eventLocation, eventDescription])
-  if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
+
+  if (eventTitle === "" || eventDate === "" || eventTime === "" || eventLocation === "" || eventDescription === "") {
     alert("Please fill all the fields");
     return;
   }
