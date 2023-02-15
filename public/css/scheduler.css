@@ -627,6 +627,21 @@ body {
     top: calc(100% + 12px);
   }
 
+  .today-weather::before,
+  .today-weather::after {
+    top: 44.95%;
+    left: 50%;
+    width: 75.5%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .today-weather::before {
+    width: 72%;
+    top: 46.48%;
+  }
+
   .events {
     padding-bottom: 340px;
   }
@@ -661,5 +676,35 @@ body {
 
   .today-weather {
     width: 100%;
+  }
+
+  .calendar::before,
+  .calendar::after {
+    top: 100%;
+    left: 50%;
+    width: 95%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .calendar::before {
+    width: 90%;
+    top: calc(100% + 12px);
+  }
+
+  .today-weather::before,
+  .today-weather::after {
+    top: 44.95%;
+    left: 50%;
+    width: 94%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .today-weather::before {
+    width: 88%;
+    top: 46.48%;
   }
 }
