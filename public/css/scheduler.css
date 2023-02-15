@@ -7,13 +7,13 @@
 /* Option to choose either or Transition upon page load */
 @keyframes transitionInY {
   from {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
 
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -305,7 +305,7 @@ body {
 }
 
 .today-weather {
-  background-color: white;
+  background-color: var(--white);
   font-family: "Poppins", sans-serif;
   color: #253036;
   width: 80%;
@@ -317,15 +317,34 @@ body {
   text-align: center;
 }
 
-.city-name h1{
+.today-weather::before,
+.today-weather::after {
+  content: "";
+  position: absolute;
+  top: 31%;
+  left: 90%;
+  width: 12px;
+  height: 26%;
+  border-radius: 0 10px 10px 0;
+  background-color: var(--offwhite);
+  transform: translateY(-50%);
+}
+
+.today-weather::before {
+  height: 23%;
+  left: calc(93% - 2px);
+  background-color: var(--black);
+}
+
+.city-name h1 {
   margin: 0;
 }
 
-#weather-img{
+#weather-img {
   height: 75px;
 }
 
-.weather-info p{
+.weather-info p {
   margin: 0;
 }
 
@@ -617,7 +636,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
   .calendar .month {
     height: 75px;
   }
@@ -640,7 +659,7 @@ body {
     padding: 20px;
   }
 
-  .today-weather{
+  .today-weather {
     width: 100%;
   }
 }
