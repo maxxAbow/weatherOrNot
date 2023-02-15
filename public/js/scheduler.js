@@ -13,8 +13,10 @@ const addEventBtn = document.querySelector(".add-event");
 const addEventWrapper = document.querySelector(".add-event-wrapper ");
 const addEventCloseBtn = document.querySelector(".close ");
 const addEventTitle = document.querySelector(".event-name ");
-const addEventFrom = document.querySelector(".add-event-date ");
-const addEventTo = document.querySelector(".event-time-to ");
+const addEventDate = document.querySelector(".add-event-date ");
+const addEventTime = document.querySelector(".add-event-time ");
+const addEventLocation = document.querySelector(".event-location");
+const addEventDescription = document.querySelector(".event-description");
 const addEventSubmit = document.querySelector(".add-event-btn ");
 
 let today = new Date();
