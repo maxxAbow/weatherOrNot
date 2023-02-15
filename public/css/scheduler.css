@@ -330,6 +330,12 @@ body {
   transform: translateY(-50%);
 }
 
+.today-weather::before {
+  height: 23%;
+  left: calc(93% - 2px);
+  background-color: var(--black);
+}
+
 .city-name h1 {
   margin: 0;
 }
@@ -630,7 +636,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
   .calendar .month {
     height: 75px;
   }
