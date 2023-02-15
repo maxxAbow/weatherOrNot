@@ -4,9 +4,9 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/languages/count/maxxAbow/weatherOrNot?color=FF9AA2&style=for-the-badge" alt="Languages" />
-<img src="https://img.shields.io/github/languages/top/maxxAbow/weatherOrNot?color=FFB7B2&style=for-the-badge" alt="Top Language" />
+<img src="https://img.shields.io/github/languages/top/maxxAbow/weatherOrNot?color=FFB7B2&style=for-the-badge" alt="Top Language" /><br>
 <img src="https://img.shields.io/github/languages/code-size/maxxAbow/weatherOrNot?color=FFDAC1&style=for-the-badge" alt="Code Size" />
-<img src="https://img.shields.io/github/repo-size/maxxAbow/weatherOrNot?color=E2F0CB&style=for-the-badge" alt="Repo Size" />
+<img src="https://img.shields.io/github/repo-size/maxxAbow/weatherOrNot?color=E2F0CB&style=for-the-badge" alt="Repo Size" /><br>
 <img src="https://img.shields.io/github/last-commit/maxxAbow/weatherOrNot?color=B5EAD7&style=for-the-badge" alt="Last Commit" />
 <img src="https://img.shields.io/github/issues/maxxAbow/weatherOrNot?color=C7CEEA&style=for-the-badge" alt="Issues" />
 </p>
