@@ -44,12 +44,24 @@ Follow these commands to run the command line application:
 
 ## Credits
 
-:email: <br>
-[Email](mailto:davidmackey@hey.com)<br>
-:octocat: <br>
-[GitHub](https://github.com/davidmichaelmackey/)<br>
-:briefcase: <br>
-[Linkedin](https://linkedin.com/in/davidmichaelmackey/)<br>
+:email: Email:<br>
+[Daikeen Lockett](mailto:daikeen_lockett@yahoo.com)<br>
+[David Mackey](mailto:davidmackey92@gmail.com)<br>
+[Maxx Bowman](mailto:mbowman@welland.com)<br>
+[Victor Rivera](mailto:veektur@hotmail.com)<br>
+[Sarah Wattles](mailto:swattles@swattles.onmicrosoft.com)<br>
+:octocat: GitHub:<br>
+[Daikeen Lockett](https://github.com/dlockett133/)<br>
+[David Mackey](https://github.com/davidmichaelmackey/)<br>
+[Maxx Bowman](https://github.com/maxxAbow/)<br>
+[Victor Rivera](https://github.com/veektur123/)<br>
+[Sarah Wattles](https://github.com/Swattles/)<br>
+:briefcase: Linkedin:<br>
+[Daikeen Lockett](https://linkedin.com/in/daikeen-lockett/)<br>
+[David Mackey](https://linkedin.com/in/davidmichaelmackey/)<br>
+[Maxx Bowman](https://linkedin.com/in/maxx-abigail-bowman-85b537193/)<br>
+[Victor Rivera](https://linkedin.com/in/.../)<br>
+[Sarah Wattles](https://www.linkedin.com/in/smwattles/)<br>
 
 ### Collaborators
 
