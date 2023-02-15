@@ -344,6 +344,19 @@ addEventSubmit.addEventListener("click", async (e) => {
     return;
   }
 
+  const response = await fetch('/api/events/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      // INSERT VALUES FROM FORM BELOW
+    
+    })
+  })
+  const parsedResponse = await response.json()
+  // localStorage.setItem('activeUser', JSON.stringify(parsedResponse))
+  // window.location.replace('/scheduler')
 //----------Apply fetch above---------------
 
   // const newEvent = {
