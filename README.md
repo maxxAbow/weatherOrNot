@@ -53,11 +53,11 @@ Follow these commands to run the command line application:
 
 ### Collaborators
 
-    Daikeen Lockett<br>
-    David Mackey<br>
-    Maxx Bowman<br>
-    Victor Rivera<br>
-    Sarah Wattles<br>
+    Daikeen Lockett
+    David Mackey
+    Maxx Bowman
+    Victor Rivera
+    Sarah Wattles
 
 ## Toolset
 
@@ -68,16 +68,13 @@ Follow these commands to run the command line application:
       <img src="https://img.shields.io/badge/-NodeJS-grey?style=for-the-badge"  alt="NodeJS" />
       <img src="https://img.shields.io/badge/-NPM-grey?style=for-the-badge"  alt="NPM" />
       <img src="https://img.shields.io/badge/-Bcrypt-grey?style=for-the-badge"  alt="Bcrypt" />
-      <img src="https://img.shields.io/badge/-Connect-Session-Sequelize-grey?style=for-the-badge"  alt="Connect-Session-Sequelize" />
       <img src="https://img.shields.io/badge/-DotEnv-grey?style=for-the-badge"  alt="DotEnv" />
       <img src="https://img.shields.io/badge/-Express-grey?style=for-the-badge"  alt="Express" />
-      <img src="https://img.shields.io/badge/-Express-Session-grey?style=for-the-badge"  alt="Express-Session" />
       <img src="https://img.shields.io/badge/-MySQL-grey?style=for-the-badge"  alt="MySQL" />
       <img src="https://img.shields.io/badge/-MySQL2-grey?style=for-the-badge"  alt="MySQL2" />
       <img src="https://img.shields.io/badge/-Sequelize-grey?style=for-the-badge"  alt="Sequelize" />
       <img src="https://img.shields.io/badge/-UUID-grey?style=for-the-badge"  alt="UUID" />
       <img src="https://img.shields.io/badge/-ESLint-grey?style=for-the-badge"  alt="ESLint" />
-      <img src="https://img.shields.io/badge/-ESLint-Config-Prettier-grey?style=for-the-badge"  alt="ESLint-Config-Prettier" />
       <img src="https://img.shields.io/badge/-Nodemon-grey?style=for-the-badge"  alt="Nodemon" />
       <img src="https://img.shields.io/badge/-Prettier-grey?style=for-the-badge"  alt="Prettier" />
       
@@ -95,4 +92,4 @@ n/a
 
 Have Questions?
 <br>
-<!-- Feel free send us an [email](mailto:davidmackey@hey.com) or reach out to us on [Linkedin](https://linkedin.com/in/davidmichaelmackey/). -->
+Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
