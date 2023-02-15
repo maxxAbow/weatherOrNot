@@ -4,6 +4,19 @@
 /* roboto */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/* Option to choose either or Transition upon page load */
+@keyframes transitionInY {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* color variables */
 :root {
   --blue: #84CCD3;
@@ -19,6 +32,8 @@
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  animation: transitionInY 0.75s;
+
 }
 
 body {
@@ -290,7 +305,7 @@ body {
 }
 
 .today-weather {
-  background-color: white;
+  background-color: var(--white);
   font-family: "Poppins", sans-serif;
   color: #253036;
   width: 80%;
@@ -302,15 +317,34 @@ body {
   text-align: center;
 }
 
-.city-name h1{
+.today-weather::before,
+.today-weather::after {
+  content: "";
+  position: absolute;
+  top: 31%;
+  left: 90%;
+  width: 12px;
+  height: 26%;
+  border-radius: 0 10px 10px 0;
+  background-color: var(--offwhite);
+  transform: translateY(-50%);
+}
+
+.today-weather::before {
+  height: 23%;
+  left: calc(93% - 2px);
+  background-color: var(--black);
+}
+
+.city-name h1 {
   margin: 0;
 }
 
-#weather-img{
+#weather-img {
   height: 75px;
 }
 
-.weather-info p{
+.weather-info p {
   margin: 0;
 }
 
@@ -456,7 +490,7 @@ body {
 }
 
 .add-event-wrapper.active {
-  max-height: 300px;
+  max-height: 395px;
 }
 
 .add-event-header {
@@ -593,6 +627,21 @@ body {
     top: calc(100% + 12px);
   }
 
+  .today-weather::before,
+  .today-weather::after {
+    top: 44.95%;
+    left: 50%;
+    width: 75.5%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .today-weather::before {
+    width: 72%;
+    top: 46.48%;
+  }
+
   .events {
     padding-bottom: 340px;
   }
@@ -602,7 +651,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
   .calendar .month {
     height: 75px;
   }
@@ -625,7 +674,37 @@ body {
     padding: 20px;
   }
 
-  .today-weather{
+  .today-weather {
     width: 100%;
+  }
+
+  .calendar::before,
+  .calendar::after {
+    top: 100%;
+    left: 50%;
+    width: 95%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .calendar::before {
+    width: 90%;
+    top: calc(100% + 12px);
+  }
+
+  .today-weather::before,
+  .today-weather::after {
+    top: 44.95%;
+    left: 50%;
+    width: 94%;
+    height: 12px;
+    border-radius: 0 0 5px 5px;
+    transform: translateX(-50%);
+  }
+
+  .today-weather::before {
+    width: 88%;
+    top: 46.48%;
   }
 }
