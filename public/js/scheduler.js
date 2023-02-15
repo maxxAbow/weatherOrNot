@@ -294,7 +294,8 @@ addEventTitle.addEventListener("input", (e) => {
 // });
 
 // function to add event to eventsArr
-addEventSubmit.addEventListener("click", () => {
+addEventSubmit.addEventListener("click", async (e) => {
+  e.preventDefault()
   const eventTitle = addEventTitle.value;
   const eventDate = addEventDate.value;
   const eventTime = addEventTime.value;
@@ -319,8 +320,9 @@ addEventSubmit.addEventListener("click", () => {
     return;
   }
 
-  const timeFrom = convertTime(eventTimeFrom);
-  const timeTo = convertTime(eventTimeTo);
+  // DONT NEED TO CONVERT TIME, IT IS ALREADY FORMATED
+  // const time = convertTime(eventTime);
+  // console.log(time)
 
   // check if event is already added
   let eventExist = false;
@@ -341,47 +343,53 @@ addEventSubmit.addEventListener("click", () => {
     alert("Event already added");
     return;
   }
-  const newEvent = {
-    title: eventTitle,
-    time: timeFrom + " - " + timeTo,
-  };
-  console.log(newEvent);
-  console.log(activeDay);
-  let eventAdded = false;
-  if (eventsArr.length > 0) {
-    eventsArr.forEach((item) => {
-      if (
-        item.day === activeDay &&
-        item.month === month + 1 &&
-        item.year === year
-      ) {
-        item.events.push(newEvent);
-        eventAdded = true;
-      }
-    });
-  }
 
-  if (!eventAdded) {
-    eventsArr.push({
-      day: activeDay,
-      month: month + 1,
-      year: year,
-      events: [newEvent],
-    });
-  }
+//----------Apply fetch above---------------
 
-  console.log(eventsArr);
-  addEventWrapper.classList.remove("active");
-  addEventTitle.value = "";
-  addEventFrom.value = "";
-  addEventTo.value = "";
-  updateEvents(activeDay);
-  //select active day and add event class if not added
-  const activeDayEl = document.querySelector(".day.active");
-  if (!activeDayEl.classList.contains("event")) {
-    activeDayEl.classList.add("event");
-  }
+  // const newEvent = {
+  //   title: eventTitle,
+  //   time: timeFrom + " - " + timeTo,
+  // };
+  // console.log(newEvent);
+  // console.log(activeDay);
+  // let eventAdded = false;
+  // if (eventsArr.length > 0) {
+  //   eventsArr.forEach((item) => {
+  //     if (
+  //       item.day === activeDay &&
+  //       item.month === month + 1 &&
+  //       item.year === year
+  //     ) {
+  //       item.events.push(newEvent);
+  //       eventAdded = true;
+  //     }
+  //   });
+  // }
+
+  // if (!eventAdded) {
+  //   eventsArr.push({
+  //     day: activeDay,
+  //     month: month + 1,
+  //     year: year,
+  //     events: [newEvent],
+  //   });
+  // }
+
+  // console.log(eventsArr);
+  // addEventWrapper.classList.remove("active");
+  // addEventTitle.value = "";
+  // addEventFrom.value = "";
+  // addEventTo.value = "";
+  // updateEvents(activeDay);
+  // //select active day and add event class if not added
+  // const activeDayEl = document.querySelector(".day.active");
+  // if (!activeDayEl.classList.contains("event")) {
+  //   activeDayEl.classList.add("event");
+  // }
 });
+
+
+//----------------------Work on adding events to db above--------------------------------
 
 // function to delete event when clicked on event
 eventsContainer.addEventListener("click", (e) => {
@@ -421,6 +429,7 @@ function saveEvents() {
 }
 
 // function to get events from local storage
+// THIS EVENT SHOULD RETRIEVE EVENTS FROM EVENTS.JS MODEL
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
   if (localStorage.getItem("events") === null) {
