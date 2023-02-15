@@ -1,67 +1,98 @@
-# <weatherOrNot>
+# { Weather Or Not }
+
+## Badges
+
+<p align="center">
+<img src="https://img.shields.io/github/languages/count/maxxAbow/weatherOrNot?color=FF9AA2&style=for-the-badge" alt="Languages" />
+<img src="https://img.shields.io/github/languages/top/maxxAbow/weatherOrNot?color=FFB7B2&style=for-the-badge" alt="Top Language" />
+<img src="https://img.shields.io/github/languages/code-size/maxxAbow/weatherOrNot?color=FFDAC1&style=for-the-badge" alt="Code Size" />
+<img src="https://img.shields.io/github/repo-size/maxxAbow/weatherOrNot?color=E2F0CB&style=for-the-badge" alt="Repo Size" />
+<img src="https://img.shields.io/github/last-commit/maxxAbow/weatherOrNot?color=B5EAD7&style=for-the-badge" alt="Last Commit" />
+<img src="https://img.shields.io/github/issues/maxxAbow/weatherOrNot?color=C7CEEA&style=for-the-badge" alt="Issues" />
+</p>
+
+## License
+<p align = "center">
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-A31F34?style=for-the-badge" alt="MIT License"/></a>
+</p>
 
 ## Description
+Lorem Ipsum
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
-- [License](#license)
+- [Contribute](#contribute)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
+Follow these commands to run the command line application:  
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+    npm i
+    npm start
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+  ![Usage](assets/images/screenshot.png)
+
+    
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+:email: <br>
+[Email](mailto:davidmackey@hey.com)<br>
+:octocat: <br>
+[GitHub](https://github.com/davidmichaelmackey/)<br>
+:briefcase: <br>
+[Linkedin](https://linkedin.com/in/davidmichaelmackey/)<br>
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+"### Collaborators
 
-If you followed tutorials, include links to those here as well.
+    Daikeen Lockett<br>
+    David Mackey<br>
+    Maxx Bowman<br>
+    Victor Rivera<br>
+    Sarah Wattles<br>
 
-## License
+## Toolset
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+<p align="center"><img src="https://img.shields.io/badge/-HTML-grey?style=for-the-badge"  alt="HTML" />
+      <img src="https://img.shields.io/badge/-CSS-grey?style=for-the-badge"  alt="CSS" />
+      <img src="https://img.shields.io/badge/-Bootstrap-grey?style=for-the-badge"  alt="Bootstrap" />
+      <img src="https://img.shields.io/badge/-JavaScript-grey?style=for-the-badge"  alt="JavaScript" />
+      <img src="https://img.shields.io/badge/-NodeJS-grey?style=for-the-badge"  alt="NodeJS" />
+      <img src="https://img.shields.io/badge/-NPM-grey?style=for-the-badge"  alt="NPM" />
+      <img src="https://img.shields.io/badge/-Bcrypt-grey?style=for-the-badge"  alt="Bcrypt" />
+      <img src="https://img.shields.io/badge/-Connect-Session-Sequelize-grey?style=for-the-badge"  alt="Connect-Session-Sequelize" />
+      <img src="https://img.shields.io/badge/-DotEnv-grey?style=for-the-badge"  alt="DotEnv" />
+      <img src="https://img.shields.io/badge/-Express-grey?style=for-the-badge"  alt="Express" />
+      <img src="https://img.shields.io/badge/-Express-Session-grey?style=for-the-badge"  alt="Express-Session" />
+      <img src="https://img.shields.io/badge/-MySQL-grey?style=for-the-badge"  alt="MySQL" />
+      <img src="https://img.shields.io/badge/-MySQL2-grey?style=for-the-badge"  alt="MySQL2" />
+      <img src="https://img.shields.io/badge/-Sequelize-grey?style=for-the-badge"  alt="Sequelize" />
+      <img src="https://img.shields.io/badge/-UUID-grey?style=for-the-badge"  alt="UUID" />
+      <img src="https://img.shields.io/badge/-ESLint-grey?style=for-the-badge"  alt="ESLint" />
+      <img src="https://img.shields.io/badge/-ESLint-Config-Prettier-grey?style=for-the-badge"  alt="ESLint-Config-Prettier" />
+      <img src="https://img.shields.io/badge/-Nodemon-grey?style=for-the-badge"  alt="Nodemon" />
+      <img src="https://img.shields.io/badge/-Prettier-grey?style=for-the-badge"  alt="Prettier" />
+      
+</p>
 
----
+## Contribute
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
+[Contributor Covenant](https://www.contributor-covenant.org/)
 
 ## Tests
 
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+n/a
+
+## Questions
+
+Have Questions?
+<br>
+<!-- Feel free send us an [email](mailto:davidmackey@hey.com) or reach out to us on [Linkedin](https://linkedin.com/in/davidmichaelmackey/). -->
