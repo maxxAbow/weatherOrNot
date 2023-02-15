@@ -13,7 +13,7 @@ const addEventBtn = document.querySelector(".add-event");
 const addEventWrapper = document.querySelector(".add-event-wrapper ");
 const addEventCloseBtn = document.querySelector(".close ");
 const addEventTitle = document.querySelector(".event-name ");
-const addEventFrom = document.querySelector(".event-time-from ");
+const addEventFrom = document.querySelector(".add-event-date ");
 const addEventTo = document.querySelector(".event-time-to ");
 const addEventSubmit = document.querySelector(".add-event-btn ");
 
@@ -271,25 +271,25 @@ addEventTitle.addEventListener("input", (e) => {
 });
 
 // allow only time in eventtime from and to
-addEventFrom.addEventListener("input", (e) => {
-  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
-  if (addEventFrom.value.length === 2) {
-    addEventFrom.value += ":";
-  }
-  if (addEventFrom.value.length > 5) {
-    addEventFrom.value = addEventFrom.value.slice(0, 5);
-  }
-});
+// addEventFrom.addEventListener("input", (e) => {
+//   addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+//   if (addEventFrom.value.length === 2) {
+//     addEventFrom.value += ":";
+//   }
+//   if (addEventFrom.value.length > 5) {
+//     addEventFrom.value = addEventFrom.value.slice(0, 5);
+//   }
+// });
 
-addEventTo.addEventListener("input", (e) => {
-  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
-  if (addEventTo.value.length === 2) {
-    addEventTo.value += ":";
-  }
-  if (addEventTo.value.length > 5) {
-    addEventTo.value = addEventTo.value.slice(0, 5);
-  }
-});
+// addEventTo.addEventListener("input", (e) => {
+//   addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+//   if (addEventTo.value.length === 2) {
+//     addEventTo.value += ":";
+//   }
+//   if (addEventTo.value.length > 5) {
+//     addEventTo.value = addEventTo.value.slice(0, 5);
+//   }
+// });
 
 // function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {

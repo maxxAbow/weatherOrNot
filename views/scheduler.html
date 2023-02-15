@@ -52,9 +52,6 @@
         </div>
         <div class="today-weather">
           <div class="city-name"><h1>Atlanta</h1></div>
-          <!-- <marquee behavior="scroll" direction="left"
-            ><img id="weather-img" src="image.jpg" alt="Image"
-          /></marquee> -->
           <img id="weather-img" src="image.jpg" alt="Image" />
           <div class="weather-info">
             <p id="temp"></p>
@@ -74,15 +71,31 @@
             </div>
             <div class="add-event-input">
               <input
-                type="text"
-                placeholder="Event Time From"
-                class="event-time-from"
+                type="date"
+                id="date"
+                name="date"
+                placeholder="DD/MM/YYYY"
+                pattern="\d{4}-\d{2}-\d{2}"
+                class="add-event-date"
+                required
               />
             </div>
             <div class="add-event-input">
               <input
+                type="time"
+                id="time-input"
+                name="time-input"
+                class="add-event-time"
+                required
+              />
+            </div>
+            <div class="add-event-input">
+              <input type="text" placeholder="Location" class="event-time-to" />
+            </div>
+            <div class="add-event-input">
+              <input
                 type="text"
-                placeholder="Event Time To"
+                placeholder="Description"
                 class="event-time-to"
               />
             </div>
