@@ -302,21 +302,18 @@ addEventSubmit.addEventListener("click", () => {
   const eventDescription = addEventDescription.value;
   console.log([eventTitle, eventDate, eventTime, eventLocation, eventDescription])
 
+  // checks for if there are any empty fields being submitted
   if (eventTitle === "" || eventDate === "" || eventTime === "" || eventLocation === "" || eventDescription === "") {
     alert("Please fill all the fields");
     return;
   }
 
   // check correct time format 24 hour
-  const timeFromArr = eventTimeFrom.split(":");
-  const timeToArr = eventTimeTo.split(":");
+  const timeArr = eventTime.split(":");
   if (
-    timeFromArr.length !== 2 ||
-    timeToArr.length !== 2 ||
-    timeFromArr[0] > 23 ||
-    timeFromArr[1] > 59 ||
-    timeToArr[0] > 23 ||
-    timeToArr[1] > 59
+    timeArr.length !== 2 ||
+    timeArr[0] > 23 ||
+    timeArr[1] > 59
   ) {
     alert("Invalid Time Format");
     return;
