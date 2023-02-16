@@ -47,7 +47,7 @@ const months = [
   "November",
   "December",
 ];
-
+debugger
 // let eventsArr = [{day: 15, month: 02, year: 2023, events: [{title: "Hello", time: "05:00"}]}]
 let eventsArr = [];
 // getEvents();
@@ -137,13 +137,14 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth);
 
-getEvents()
+const refreshCal = () => {getEvents()
 .then(() => { 
   console.log(eventsArr)
   initCalendar()
 })
-;
+};
 
+refreshCal();
 // function to add active on day
 function addListner() {
   const days = document.querySelectorAll(".day");
@@ -251,7 +252,7 @@ function getActiveDay(date) {
 }
 
 // function update events when a day is active
-// debugger
+debugger
 function updateEvents(date) {
   let events = "";
   eventsArr.forEach((event) => {
@@ -348,11 +349,7 @@ addEventSubmit.addEventListener("click", async (e) => {
   ) {
     alert("Invalid Time Format");
     return;
-  }
-
-  // DONT NEED TO CONVERT TIME, IT IS ALREADY FORMATED
-  // const time = convertTime(eventTimeValue);
-  // console.log(time)
+  }  
 
   // check if event is already added
   let eventExist = false;
@@ -389,51 +386,7 @@ addEventSubmit.addEventListener("click", async (e) => {
       userId: userId
     })
   })
-  // const parsedResponse = await response.json()
-  // localStorage.setItem('activeUser', JSON.stringify(parsedResponse))
-  // window.location.replace('/scheduler')
-//----------Apply fetch above---------------
-
-  // const newEvent = {
-  //   title: eventTitleValue,
-  //   time: timeFrom + " - " + timeTo,
-  // };
-  // console.log(newEvent);
-  // console.log(activeDay);
-  // let eventAdded = false;
-  // if (eventsArr.length > 0) {
-  //   eventsArr.forEach((item) => {
-  //     if (
-  //       item.day === activeDay &&
-  //       item.month === month + 1 &&
-  //       item.year === year
-  //     ) {
-  //       item.events.push(newEvent);
-  //       eventAdded = true;
-  //     }
-  //   });
-  // }
-
-  // if (!eventAdded) {
-  //   eventsArr.push({
-  //     day: activeDay,
-  //     month: month + 1,
-  //     year: year,
-  //     events: [newEvent],
-  //   });
-  // }
-
-  // console.log(eventsArr);
-  // addEventWrapper.classList.remove("active");
-  // addeventTitleValue.value = "";
-  // addEventFrom.value = "";
-  // addEventTo.value = "";
-  // updateEvents(activeDay);
-  // //select active day and add event class if not added
-  // const activeDayEl = document.querySelector(".day.active");
-  // if (!activeDayEl.classList.contains("event")) {
-  //   activeDayEl.classList.add("event");
-  // }
+  refreshCal();
 });
 
 
@@ -489,9 +442,6 @@ function saveEvents() {
 async function getEvents() {
   //check if events are already saved in local storage then return event else nothing
   //TODO: Get events from database instead of local storage
-  // if (localStorage.getItem("events") === null) {
-  //   return;
-  // }
 
   const response = await fetch(`/api/events/${userId}`, {
     method: 'GET',
