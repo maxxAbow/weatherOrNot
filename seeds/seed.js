@@ -5,9 +5,9 @@ const seedUsers = require('./user');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
-  await seedEvents();
-
   await seedUsers();
+
+  await seedEvents();
 
   process.exit(0);
 };
