@@ -47,7 +47,7 @@ const months = [
   "November",
   "December",
 ];
-debugger
+
 // let eventsArr = [{day: 15, month: 02, year: 2023, events: [{title: "Hello", time: "05:00"}]}]
 let eventsArr = [];
 // getEvents();
@@ -147,6 +147,7 @@ const refreshCal = () => {getEvents()
 refreshCal();
 // function to add active on day
 function addListner() {
+  
   const days = document.querySelectorAll(".day");
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
@@ -252,8 +253,9 @@ function getActiveDay(date) {
 }
 
 // function update events when a day is active
-debugger
 function updateEvents(date) {
+  // debugger
+
   let events = "";
   eventsArr.forEach((event) => {
     if (
@@ -280,7 +282,7 @@ function updateEvents(date) {
         </div>`;
   }
   eventsContainer.innerHTML = events;
-  saveEvents();
+  // saveEvents();
 }
 
 // function to add event
@@ -302,27 +304,6 @@ document.addEventListener("click", (e) => {
 addEventTitle.addEventListener("input", (e) => {
   addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
-
-// allow only time in eventtime from and to
-// addEventFrom.addEventListener("input", (e) => {
-//   addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
-//   if (addEventFrom.value.length === 2) {
-//     addEventFrom.value += ":";
-//   }
-//   if (addEventFrom.value.length > 5) {
-//     addEventFrom.value = addEventFrom.value.slice(0, 5);
-//   }
-// });
-
-// addEventTo.addEventListener("input", (e) => {
-//   addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
-//   if (addEventTo.value.length === 2) {
-//     addEventTo.value += ":";
-//   }
-//   if (addEventTo.value.length > 5) {
-//     addEventTo.value = addEventTo.value.slice(0, 5);
-//   }
-// });
 
 // function to add event to eventsArr
 addEventSubmit.addEventListener("click", async (e) => {
@@ -386,11 +367,10 @@ addEventSubmit.addEventListener("click", async (e) => {
       userId: userId
     })
   })
+  //Closes addEvent Form when button is clicked
+  const closeAddEventForm = await addEventWrapper.classList.remove("active");
   refreshCal();
 });
-
-
-//----------------------Work on adding events to db above--------------------------------
 
 // function to delete event when clicked on event
 eventsContainer.addEventListener("click", (e) => {
@@ -405,7 +385,6 @@ eventsContainer.addEventListener("click", (e) => {
           event.year === year
         ) {
           event.events.forEach((item, index) => {
-            debugger
             console.log('Inside event loop')
             if (item.id === eventId) {
               event.events.splice(index, 1);
@@ -415,6 +394,7 @@ eventsContainer.addEventListener("click", (e) => {
           fetch(`/api/events/${eventId}`, {
             method: "DELETE"
           })
+          
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);
@@ -450,7 +430,7 @@ async function getEvents() {
     }
   })
   const parsedArray = await response.json()
-  // debugger
+  
   //Instead of pushing the local storage events, push the response from the events api call
   eventsArr = parsedArray;
   
