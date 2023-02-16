@@ -632,7 +632,7 @@ body {
 
   .today-weather::before,
   .today-weather::after {
-    top: 44.1%;
+    top: 42.4%;
     left: 50%;
     width: 75.5%;
     height: 12px;
@@ -642,7 +642,7 @@ body {
 
   .today-weather::before {
     width: 72%;
-    top: 45.48%;
+    top: 44%;
   }
 
   .events {
@@ -698,7 +698,7 @@ body {
 
   .today-weather::before,
   .today-weather::after {
-    top: 44.95%;
+    top: 42.4%;
     left: 50%;
     width: 94%;
     height: 12px;
@@ -708,6 +708,6 @@ body {
 
   .today-weather::before {
     width: 88%;
-    top: 46.48%;
+    top: 44%;
   }
 }
