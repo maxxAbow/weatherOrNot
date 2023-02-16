@@ -19,9 +19,9 @@ events.get('/:userId', async (req,res) => {
             twelveHourFormat = `${hoursAndMinutes[0]}:${hoursAndMinutes[1]} AM`
         }
         if(!todaysEvents){
-            groupedEventsObject[event.eventDate] = [{title: event.eventName, time: twelveHourFormat, id: event.id}]
+            groupedEventsObject[event.eventDate] = [{title: event.eventName, time: twelveHourFormat, id: event.id, description: event.eventDescription}]
         } else {
-            groupedEventsObject[event.eventDate].push({title: event.eventName, time: twelveHourFormat, id: event.id})
+            groupedEventsObject[event.eventDate].push({title: event.eventName, time: twelveHourFormat, id: event.id, description: event.eventDescription})
         }
     })
     const finalEventStructure = []

@@ -267,7 +267,7 @@ function updateEvents(date) {
         events += `<div class="event" id="${event.id}">
             <div class="title">
               <i class="fas fa-circle"></i>
-              <h3 class="event-title">${event.title}</h3>
+              <h3 class="event-title">${event.title}: ${event.description}</h3>
             </div>
             <div class="event-time">
               <span class="event-time">${event.time}</span>
@@ -369,6 +369,8 @@ addEventSubmit.addEventListener("click", async (e) => {
   })
   //Closes addEvent Form when button is clicked
   const closeAddEventForm = await addEventWrapper.classList.remove("active");
+
+  //Refreshes calendar to show newly created events in calendar
   refreshCal();
 });
 
