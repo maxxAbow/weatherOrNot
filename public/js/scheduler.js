@@ -1,38 +1,45 @@
-const calendar = document.querySelector(".calendar");
-const date = document.querySelector(".date");
-const daysContainer = document.querySelector(".days");
-const prev = document.querySelector(".prev");
-const next = document.querySelector(".next");
-const todayBtn = document.querySelector(".today-btn");
-const gotoBtn = document.querySelector(".goto-btn");
-const dateInput = document.querySelector(".date-input");
-const eventDay = document.querySelector(".event-day");
-const eventDate = document.querySelector(".event-date");
-const eventsContainer = document.querySelector(".events");
-const addEventBtn = document.querySelector(".add-event");
-const addEventWrapper = document.querySelector(".add-event-wrapper ");
-const addEventCloseBtn = document.querySelector(".close ");
-const addEventTitle = document.querySelector(".event-name ");
-const addEventDate = document.querySelector(".add-event-date ");
-const addEventTime = document.querySelector(".add-event-time ");
-const addEventLocation = document.querySelector(".event-location");
-const addEventDescription = document.querySelector(".event-description");
-const addEventSubmit = document.querySelector(".add-event-btn ");
-const weatherBox = document.querySelector('#weather-box')
-
-const activeUserStorage = localStorage.getItem('activeUser');
-const activeUser = JSON.parse(activeUserStorage);
+// !=====================================================================================================
+// querySelectors - selection of elements to then use other DOM methods to manipulate or interact with it
+const calendar = document.querySelector(".calendar"); // class
+const date = document.querySelector(".date"); // class
+const daysContainer = document.querySelector(".days"); // class
+const prev = document.querySelector(".prev"); // class
+const next = document.querySelector(".next"); // class
+const todayBtn = document.querySelector(".today-btn"); // class
+const gotoBtn = document.querySelector(".goto-btn"); // class
+const dateInput = document.querySelector(".date-input"); // class
+const eventDay = document.querySelector(".event-day"); // class
+const eventDate = document.querySelector(".event-date"); // class
+const eventsContainer = document.querySelector(".events"); // class
+const addEventBtn = document.querySelector(".add-event"); // class
+const addEventWrapper = document.querySelector(".add-event-wrapper "); // class
+const addEventCloseBtn = document.querySelector(".close "); // class
+const addEventTitle = document.querySelector(".event-name "); // class
+const addEventDate = document.querySelector(".add-event-date "); // class
+const addEventTime = document.querySelector(".add-event-time "); // class
+const addEventLocation = document.querySelector(".event-location"); // class
+const addEventDescription = document.querySelector(".event-description"); // class
+const addEventSubmit = document.querySelector(".add-event-btn "); // class
+const weatherBox = document.querySelector('#weather-box'); // id
+// !================================================================
+// retrieves data from local storage and parsing it into a JS object
+const activeUserStorage = localStorage.getItem('activeUser'); // retrieves value associated with the key -> activeUser
+const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
+// extracts the values of two properties from the activeUser object: 'displayName' and 'userId'
 const displayName = activeUser.displayName;
 const userId = activeUser.userId;
-
-let today = new Date();
-let activeDay;
-let month = today.getMonth();
-let year = today.getFullYear();
-const todayDay = today.getDate()
-let lat
-let lon
-
+// !====================================================================================================================================
+// date objects
+let today = new Date(); // creates a new Date object & assigns to the variable today
+let activeDay; // new var called activeDay but does not assign it a value
+let month = today.getMonth(); // retrieves month component (zero-based index from 0-11) & assigns to variable month
+let year = today.getFullYear(); // built-in method of the Date object, returns a four-digit integer value representing the year
+const todayDay = today.getDate(); // retrieves the day of the month for the current date
+// variable declarations w/o initializing value
+let lat; // latitude
+let lon; // longitude
+// !=====================================================================
+// defining an array named Months that contains all 12 months of the year
 const months = [
   "January",
   "February",
@@ -47,37 +54,41 @@ const months = [
   "November",
   "December",
 ];
-
+// !============================================================================================
 // let eventsArr = [{day: 15, month: 02, year: 2023, events: [{title: "Hello", time: "05:00"}]}]
-let eventsArr = [];
+let eventsArr = []; // declaring var eventsArr, initializes it to an empty array
 // getEvents();
-console.log(eventsArr);
-
+console.log(eventsArr); // logging the eventsArr to the console
+// !===========================================================
 // function add days in days with class day and prev-date next-date on previous month and next month days and active on today
+// intializes and displays the calendar for the current month and year
+// creates date objects for first day, last day, and prev and next days displayed on the calendar
+// creates a string 'days' that contains HTML for each day of the month
+// the loop checks if there is an event on each day, and adds appropriate CSS class to the day's HTML if event
+// after the HTML string is constructed it is set as the 'innerHTML' of the 'daysContainer' element, and 'addListener' is called to add event listeners to each day element in the calendar
 function initCalendar() {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const prevLastDay = new Date(year, month, 0);
-  const prevDays = prevLastDay.getDate();
-  const lastDate = lastDay.getDate();
-  const day = firstDay.getDay();
-  const nextDays = 7 - lastDay.getDay() - 1;
-
-  date.innerHTML = months[month] + " " + year;
-
-  let days = "";
-
+  // initializing several variables used to generate the calendar display
+  const firstDay = new Date(year, month, 1); // Date object representing the first day of current month
+  const lastDay = new Date(year, month + 1, 0); // Date object representing the last day of the current month, 
+  const prevLastDay = new Date(year, month, 0); // Date object representing the last day of the prev month
+  const prevDays = prevLastDay.getDate(); // # of days in the prev month
+  const lastDate = lastDay.getDate(); // # of days in the current month
+  const day = firstDay.getDay(); // day of the week which the first day of the current month falls (zero-based index, 0-Sun to 6-Sat)
+  const nextDays = 7 - lastDay.getDay() - 1; // # of days from the end of the current month to the end of the week
+  date.innerHTML = months[month] + " " + year; // set to display the current month and year
+  let days = ""; // initialized as an empty string, used to build the HTML for calendar days
+  // creating the days in the prev month
   for (let x = day; x > 0; x--) {
     days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
   }
-
+  // loops through each day of the current month and generates the corresponding HTML for each day...
   for (let i = 1; i <= lastDate; i++) {
     // check if event is present on that day
     let event = false;
     eventsArr.forEach((eventObj) => {
-      console.log(eventObj)
-      console.log(typeof eventObj.day)
-      console.log(typeof i)
+      console.log(eventObj);
+      console.log(typeof eventObj.day);
+      console.log(typeof i);
       if (
         eventObj.day === i &&
         eventObj.month === month + 1 &&
@@ -107,61 +118,65 @@ function initCalendar() {
       }
     }
   }
-
+  // adding HTML elements for the days of the next month that fall in the last week of the current month
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="day next-date">${j}</div>`;
   }
+  // days variable is built up by prev code, inserted as the innerHTML of the daysContainer element
   daysContainer.innerHTML = days;
-  addListner();
+  addListener(); // function called, adds event listeners to the newly created day elements
 }
-
-// function to add month and year on prev and next button
+// !=====================================================
+// function to sub/add month & year on prev & next button
+// prev month function
 function prevMonth() {
-  month--;
-  if (month < 0) {
-    month = 11;
-    year--;
+  month--; // decrements value of month var
+  if (month < 0) { // if number becomes negative ↓
+    month = 11; // changes month to Dec
+    year--; // changes year to prev year
   }
-  initCalendar();
+  initCalendar(); // updates calendar display
 }
-
+// next month function
 function nextMonth() {
-  month++;
-  if (month > 11) {
-    month = 0;
-    year++;
+  month++; // increments value
+  if (month > 11) { // if number greater than Dec ↓
+    month = 0; // changes month to Jan
+    year++; // changes year to next year
   }
   initCalendar();
 }
-
-prev.addEventListener("click", prevMonth);
-next.addEventListener("click", nextMonth);
-
-getEvents()
-.then(() => { 
-  console.log(eventsArr)
-  initCalendar()
-})
-;
-
+// !===================================================
+// adding event listeners
+prev.addEventListener("click", prevMonth); // id="prev"
+next.addEventListener("click", nextMonth); // id="next"
+// !===================================================
+getEvents() // function retrieves list of events
+  .then(() => { // chained onto getEvents() function call. takes function as arg, executed once function has completed its work
+    console.log(eventsArr); // logs value to console
+    initCalendar(); // updates calendar display
+  });
+// !============================
+// adds event listeners to the date cells of the calendar
 // function to add active on day
-function addListner() {
-  const days = document.querySelectorAll(".day");
+function addListener() {
+  const days = document.querySelectorAll(".day"); // selects all elements with the day class and stores them in the days var
+  // iterates through each element in the days collection and adds an event listener to it
   days.forEach((day) => {
+    // adds a click event listener to the current date cell
     day.addEventListener("click", (e) => {
-      getActiveDay(e.target.innerHTML);
-      updateEvents(Number(e.target.innerHTML));
-
-      activeDay = Number(e.target.innerHTML);
-      const daysOut = activeDay - todayDay
-      if(daysOut >= 0 && daysOut <= 5) {
-        getWeather(lat, lon, daysOut)
+      getActiveDay(e.target.innerHTML); // function that sets the currently active day based on the date cell that was clicked
+      updateEvents(Number(e.target.innerHTML)); // a function that updates the list of events displayed on the calendar based on the selected day
+      activeDay = Number(e.target.innerHTML); // sets the 'activeDay' var to the selected day
+      const daysOut = activeDay - todayDay; // calculates the # of days between the selected day and the current day
+      if (daysOut >= 0 && daysOut <= 5) { // displays a weather box if the selected day is within the next 5 days
+        getWeather(lat, lon, daysOut); // represent user's current latitude and longitude, used to retrieve the weather forecast from an API
         weatherBox.style.display = "block";
       } else {
-        //Hide the weather Box
+        // hides the weather Box
         weatherBox.style.display = "none";
       }
-      // remove active
+      // removes active
       days.forEach((day) => {
         day.classList.remove("active");
       });
@@ -207,7 +222,7 @@ todayBtn.addEventListener("click", () => {
   month = today.getMonth();
   year = today.getFullYear();
   initCalendar();
-  getWeather(lat, lon)
+  getWeather(lat, lon);
   weatherBox.style.display = "block";
 });
 
@@ -325,16 +340,16 @@ addEventTitle.addEventListener("input", (e) => {
 
 // function to add event to eventsArr
 addEventSubmit.addEventListener("click", async (e) => {
-  e.preventDefault()
+  e.preventDefault();
   const eventTitleValue = addEventTitle.value;
   const eventDateValue = addEventDate.value;
   const eventTimeValue = addEventTime.value;
   const eventLocationValue = addEventLocation.value;
   const eventDescriptionValue = addEventDescription.value;
-  console.log([eventTitleValue, eventDateValue, eventTimeValue, eventLocationValue,eventDescriptionValue, userId])
-  
+  console.log([eventTitleValue, eventDateValue, eventTimeValue, eventLocationValue, eventDescriptionValue, userId]);
+
   // checks for if there are any empty fields being submitted
-  if (eventTitleValue === "" || eventDateValue === "" || eventTimeValue === "" || eventLocationValue === "" ||eventDescriptionValue === "") {
+  if (eventTitleValue === "" || eventDateValue === "" || eventTimeValue === "" || eventLocationValue === "" || eventDescriptionValue === "") {
     alert("Please fill all the fields");
     return;
   }
@@ -381,18 +396,18 @@ addEventSubmit.addEventListener("click", async (e) => {
     },
     body: JSON.stringify({
       // INSERT VALUES FROM FORM BELOW
-      eventName:eventTitleValue,
-      eventDate:eventDateValue,
-      eventTime:eventTimeValue,
-      eventLocation:eventLocationValue,
-      eventDescription:eventDescriptionValue,
+      eventName: eventTitleValue,
+      eventDate: eventDateValue,
+      eventTime: eventTimeValue,
+      eventLocation: eventLocationValue,
+      eventDescription: eventDescriptionValue,
       userId: userId
     })
-  })
+  });
   // const parsedResponse = await response.json()
   // localStorage.setItem('activeUser', JSON.stringify(parsedResponse))
   // window.location.replace('/scheduler')
-//----------Apply fetch above---------------
+  //----------Apply fetch above---------------
 
   // const newEvent = {
   //   title: eventTitleValue,
@@ -452,16 +467,16 @@ eventsContainer.addEventListener("click", (e) => {
           event.year === year
         ) {
           event.events.forEach((item, index) => {
-            debugger
-            console.log('Inside event loop')
+            debugger;
+            console.log('Inside event loop');
             if (item.id === eventId) {
               event.events.splice(index, 1);
-              console.log(event.events)
+              console.log(event.events);
             }
           });
           fetch(`/api/events/${eventId}`, {
             method: "DELETE"
-          })
+          });
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);
@@ -498,12 +513,12 @@ async function getEvents() {
     headers: {
       'Content-Type': 'application/json'
     }
-  })
-  const parsedArray = await response.json()
+  });
+  const parsedArray = await response.json();
   // debugger
   //Instead of pushing the local storage events, push the response from the events api call
   eventsArr = parsedArray;
-  
+
 }
 
 function convertTime(time) {
@@ -550,93 +565,93 @@ generateWeather(cityName);
 // Function invoked to fetch weather for 5 days
 function getWeather(lat, lon, daysOut = 0) {
   // URL used to fetch weather for current date and time
-  let weatherUrl = (daysOut > 0 && daysOut <= 5) ? `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d08a795d9cdd7f108bc04f749cd0193c&units=imperial&units=imperial` 
-  : `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`;
+  let weatherUrl = (daysOut > 0 && daysOut <= 5) ? `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d08a795d9cdd7f108bc04f749cd0193c&units=imperial&units=imperial`
+    : `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`;
 
-  if(daysOut > 0 && daysOut <= 5) {
+  if (daysOut > 0 && daysOut <= 5) {
     fetch(weatherUrl).then(response => response.json()).then(data => {
-      let firstDayWeahterIndex
-      let desiredDaysWeatherIndex
-        const firstDayWeather = data.list.find((weather,i ) => {
-          if(weather.dt_txt.split(' ')[1] === '12:00:00'){
-            firstDayWeahterIndex = i
-            return true
-          }
-        })
-        if(daysOut === 1){
-          //Populate with the firstDayWeather
-          //Captures Data for weather
-          let weather = firstDayWeather.weather[0];
-          let main = firstDayWeather.main;
-          console.log(weather);
-          console.log(main);
-          let icon = weather.icon;
-          let weatherDescription = weather.description;
-
-          // Grabs icon of the weather for the "Present Day" and places it in img tag 
-          weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
-
-          // Declares values from API to variables
-          let temp = main.temp; // Tempature
-          let wind = firstDayWeather.wind.speed; // Wind Speed
-          let humid = main.humidity;// Humidity
-
-          // Places values from API to DOM
-          childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
-          childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
-          childrenElements[2].innerHTML = `Humidity: ${humid}%`;
-        } else {
-          desiredDaysWeatherIndex = firstDayWeahterIndex + ((daysOut - 1) * 8)
-          const desiredDayWeather = data.list[desiredDaysWeatherIndex]
-          let weather = desiredDayWeather.weather[0];
-          let main = desiredDayWeather.main;
-          console.log(weather);
-          console.log(main);
-          let icon = weather.icon;
-          let weatherDescription = weather.description;
-
-          // Grabs icon of the weather for the "Present Day" and places it in img tag 
-          weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
-
-          // Declares values from API to variables
-          let temp = main.temp; // Tempature
-          let wind = desiredDayWeather.wind.speed; // Wind Speed
-          let humid = main.humidity;// Humidity
-
-          // Places values from API to DOM
-          childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
-          childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
-          childrenElements[2].innerHTML = `Humidity: ${humid}%`;
-
+      let firstDayWeahterIndex;
+      let desiredDaysWeatherIndex;
+      const firstDayWeather = data.list.find((weather, i) => {
+        if (weather.dt_txt.split(' ')[1] === '12:00:00') {
+          firstDayWeahterIndex = i;
+          return true;
         }
-    })
+      });
+      if (daysOut === 1) {
+        //Populate with the firstDayWeather
+        //Captures Data for weather
+        let weather = firstDayWeather.weather[0];
+        let main = firstDayWeather.main;
+        console.log(weather);
+        console.log(main);
+        let icon = weather.icon;
+        let weatherDescription = weather.description;
+
+        // Grabs icon of the weather for the "Present Day" and places it in img tag 
+        weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
+        // Declares values from API to variables
+        let temp = main.temp; // Tempature
+        let wind = firstDayWeather.wind.speed; // Wind Speed
+        let humid = main.humidity;// Humidity
+
+        // Places values from API to DOM
+        childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+        childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+        childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+      } else {
+        desiredDaysWeatherIndex = firstDayWeahterIndex + ((daysOut - 1) * 8);
+        const desiredDayWeather = data.list[desiredDaysWeatherIndex];
+        let weather = desiredDayWeather.weather[0];
+        let main = desiredDayWeather.main;
+        console.log(weather);
+        console.log(main);
+        let icon = weather.icon;
+        let weatherDescription = weather.description;
+
+        // Grabs icon of the weather for the "Present Day" and places it in img tag 
+        weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
+        // Declares values from API to variables
+        let temp = main.temp; // Tempature
+        let wind = desiredDayWeather.wind.speed; // Wind Speed
+        let humid = main.humidity;// Humidity
+
+        // Places values from API to DOM
+        childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+        childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+        childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+
+      }
+    });
   } else {
     fetch(weatherUrl)
-    .then(response => response.json())
-    .then(data => {
-      
-      //Captures Data for weather
-      let weather = data.weather[0];
-      let main = data.main;
-      console.log(weather);
-      console.log(main);
-      let icon = weather.icon;
-      let weatherDescription = weather.description;
+      .then(response => response.json())
+      .then(data => {
 
-      // Grabs icon of the weather for the "Present Day" and places it in img tag 
-      weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+        //Captures Data for weather
+        let weather = data.weather[0];
+        let main = data.main;
+        console.log(weather);
+        console.log(main);
+        let icon = weather.icon;
+        let weatherDescription = weather.description;
 
-      // Declares values from API to variables
-      let temp = main.temp; // Tempature
-      let wind = data.wind.speed; // Wind Speed
-      let humid = main.humidity;// Humidity
+        // Grabs icon of the weather for the "Present Day" and places it in img tag 
+        weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 
-      // Places values from API to DOM
-      childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
-      childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
-      childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+        // Declares values from API to variables
+        let temp = main.temp; // Tempature
+        let wind = data.wind.speed; // Wind Speed
+        let humid = main.humidity;// Humidity
 
-    });
+        // Places values from API to DOM
+        childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+        childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+        childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+
+      });
   }
 }
 
