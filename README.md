@@ -36,9 +36,9 @@ Follow these commands to run the command line application:
 
 ## Usage
 
-  ![Sign In Usage](../public/images/screenshots/signin.png)
-  ![Sign Up Usage](../public/images/screenshots/signup.png)
-  ![Scheduler Usage](../public/images/screenshots/scheduler.png)
+  ![Sign In Usage](./public/images/screenshots/signin.png)
+  ![Sign Up Usage](./public/images/screenshots/signup.png)
+  ![Scheduler Usage](./public/images/screenshots/scheduler.png)
 
 ## Credits
 
