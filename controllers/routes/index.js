@@ -1,14 +1,14 @@
-const express = require('express');
+// const express = require('express');
 
-// Import our modular routers for /login, /profile, and /scheduler
-const loginRouter = require('./login');
-const profileRouter = require('./profile');
-const schedulerRouter = require('./scheduler.js');
+// // Import our modular routers for /login, /profile, and /scheduler
+// const loginRouter = require('./login');
+// const profileRouter = require('./profile');
+// const schedulerRouter = require('./scheduler.js');
 
-const app = express();
+// const app = express();
 
-app.use('/scheduler', schedulerRouter);
-// app.use('/login', loginRouter);
-// app.use('/profile', profileRouter);
+// app.use('/scheduler', schedulerRouter);
+// // app.use('/login', loginRouter);
+// // app.use('/profile', profileRouter);
 
-module.exports = app;
+// module.exports = app;

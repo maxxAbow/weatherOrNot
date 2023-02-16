@@ -1,4 +1,3 @@
-
 # { Weather Or Not }
 
 ## Badges
@@ -97,4 +96,3 @@ n/a
 Have Questions?
 <br>
 <!-- Feel free send us an [email](mailto:davidmackey@hey.com) or reach out to us on [Linkedin](https://linkedin.com/in/davidmichaelmackey/). -->
-

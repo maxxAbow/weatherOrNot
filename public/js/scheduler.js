@@ -13,8 +13,10 @@ const addEventBtn = document.querySelector(".add-event");
 const addEventWrapper = document.querySelector(".add-event-wrapper ");
 const addEventCloseBtn = document.querySelector(".close ");
 const addEventTitle = document.querySelector(".event-name ");
-const addEventFrom = document.querySelector(".event-time-from ");
-const addEventTo = document.querySelector(".event-time-to ");
+const addEventDate = document.querySelector(".add-event-date ");
+const addEventTime = document.querySelector(".add-event-time ");
+const addEventLocation = document.querySelector(".event-location");
+const addEventDescription = document.querySelector(".event-description");
 const addEventSubmit = document.querySelector(".add-event-btn ");
 
 let today = new Date();
@@ -284,53 +286,56 @@ addEventTitle.addEventListener("input", (e) => {
 });
 
 // allow only time in eventtime from and to
-addEventFrom.addEventListener("input", (e) => {
-  addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
-  if (addEventFrom.value.length === 2) {
-    addEventFrom.value += ":";
-  }
-  if (addEventFrom.value.length > 5) {
-    addEventFrom.value = addEventFrom.value.slice(0, 5);
-  }
-});
+// addEventFrom.addEventListener("input", (e) => {
+//   addEventFrom.value = addEventFrom.value.replace(/[^0-9:]/g, "");
+//   if (addEventFrom.value.length === 2) {
+//     addEventFrom.value += ":";
+//   }
+//   if (addEventFrom.value.length > 5) {
+//     addEventFrom.value = addEventFrom.value.slice(0, 5);
+//   }
+// });
 
-addEventTo.addEventListener("input", (e) => {
-  addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
-  if (addEventTo.value.length === 2) {
-    addEventTo.value += ":";
-  }
-  if (addEventTo.value.length > 5) {
-    addEventTo.value = addEventTo.value.slice(0, 5);
-  }
-});
+// addEventTo.addEventListener("input", (e) => {
+//   addEventTo.value = addEventTo.value.replace(/[^0-9:]/g, "");
+//   if (addEventTo.value.length === 2) {
+//     addEventTo.value += ":";
+//   }
+//   if (addEventTo.value.length > 5) {
+//     addEventTo.value = addEventTo.value.slice(0, 5);
+//   }
+// });
 
 // function to add event to eventsArr
-addEventSubmit.addEventListener("click", () => {
+addEventSubmit.addEventListener("click", async (e) => {
+  e.preventDefault()
   const eventTitle = addEventTitle.value;
-  const eventTimeFrom = addEventFrom.value;
-  const eventTimeTo = addEventTo.value;
-  if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
+  const eventDate = addEventDate.value;
+  const eventTime = addEventTime.value;
+  const eventLocation = addEventLocation.value;
+  const eventDescription = addEventDescription.value;
+  console.log([eventTitle, eventDate, eventTime, eventLocation, eventDescription])
+
+  // checks for if there are any empty fields being submitted
+  if (eventTitle === "" || eventDate === "" || eventTime === "" || eventLocation === "" || eventDescription === "") {
     alert("Please fill all the fields");
     return;
   }
 
   // check correct time format 24 hour
-  const timeFromArr = eventTimeFrom.split(":");
-  const timeToArr = eventTimeTo.split(":");
+  const timeArr = eventTime.split(":");
   if (
-    timeFromArr.length !== 2 ||
-    timeToArr.length !== 2 ||
-    timeFromArr[0] > 23 ||
-    timeFromArr[1] > 59 ||
-    timeToArr[0] > 23 ||
-    timeToArr[1] > 59
+    timeArr.length !== 2 ||
+    timeArr[0] > 23 ||
+    timeArr[1] > 59
   ) {
     alert("Invalid Time Format");
     return;
   }
 
-  const timeFrom = convertTime(eventTimeFrom);
-  const timeTo = convertTime(eventTimeTo);
+  // DONT NEED TO CONVERT TIME, IT IS ALREADY FORMATED
+  // const time = convertTime(eventTime);
+  // console.log(time)
 
   // check if event is already added
   let eventExist = false;
@@ -351,47 +356,53 @@ addEventSubmit.addEventListener("click", () => {
     alert("Event already added");
     return;
   }
-  const newEvent = {
-    title: eventTitle,
-    time: timeFrom + " - " + timeTo,
-  };
-  console.log(newEvent);
-  console.log(activeDay);
-  let eventAdded = false;
-  if (eventsArr.length > 0) {
-    eventsArr.forEach((item) => {
-      if (
-        item.day === activeDay &&
-        item.month === month + 1 &&
-        item.year === year
-      ) {
-        item.events.push(newEvent);
-        eventAdded = true;
-      }
-    });
-  }
 
-  if (!eventAdded) {
-    eventsArr.push({
-      day: activeDay,
-      month: month + 1,
-      year: year,
-      events: [newEvent],
-    });
-  }
+//----------Apply fetch above---------------
 
-  console.log(eventsArr);
-  addEventWrapper.classList.remove("active");
-  addEventTitle.value = "";
-  addEventFrom.value = "";
-  addEventTo.value = "";
-  updateEvents(activeDay);
-  //select active day and add event class if not added
-  const activeDayEl = document.querySelector(".day.active");
-  if (!activeDayEl.classList.contains("event")) {
-    activeDayEl.classList.add("event");
-  }
+  // const newEvent = {
+  //   title: eventTitle,
+  //   time: timeFrom + " - " + timeTo,
+  // };
+  // console.log(newEvent);
+  // console.log(activeDay);
+  // let eventAdded = false;
+  // if (eventsArr.length > 0) {
+  //   eventsArr.forEach((item) => {
+  //     if (
+  //       item.day === activeDay &&
+  //       item.month === month + 1 &&
+  //       item.year === year
+  //     ) {
+  //       item.events.push(newEvent);
+  //       eventAdded = true;
+  //     }
+  //   });
+  // }
+
+  // if (!eventAdded) {
+  //   eventsArr.push({
+  //     day: activeDay,
+  //     month: month + 1,
+  //     year: year,
+  //     events: [newEvent],
+  //   });
+  // }
+
+  // console.log(eventsArr);
+  // addEventWrapper.classList.remove("active");
+  // addEventTitle.value = "";
+  // addEventFrom.value = "";
+  // addEventTo.value = "";
+  // updateEvents(activeDay);
+  // //select active day and add event class if not added
+  // const activeDayEl = document.querySelector(".day.active");
+  // if (!activeDayEl.classList.contains("event")) {
+  //   activeDayEl.classList.add("event");
+  // }
 });
+
+
+//----------------------Work on adding events to db above--------------------------------
 
 // function to delete event when clicked on event
 eventsContainer.addEventListener("click", (e) => {
@@ -431,6 +442,7 @@ function saveEvents() {
 }
 
 // function to get events from local storage
+// THIS EVENT SHOULD RETRIEVE EVENTS FROM EVENTS.JS MODEL
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
   if (localStorage.getItem("events") === null) {
