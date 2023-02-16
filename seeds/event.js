@@ -8,6 +8,7 @@ const eventData = [
         eventTime: '18:00:00',
         eventLocation: 'Savannah',
         eventDescription: 'Meeting to discuss The Witchs Heart by Geniveive Gornichec',
+        userId: 'kfdjri984kj'
     },
 ];
 
