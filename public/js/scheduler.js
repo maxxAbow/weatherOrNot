@@ -18,6 +18,7 @@ const addEventTime = document.querySelector(".add-event-time ");
 const addEventLocation = document.querySelector(".event-location");
 const addEventDescription = document.querySelector(".event-description");
 const addEventSubmit = document.querySelector(".add-event-btn ");
+const weatherBox = document.querySelector('#weather-box')
 
 const activeUserStorage = localStorage.getItem('activeUser');
 const activeUser = JSON.parse(activeUserStorage);
@@ -28,6 +29,9 @@ let today = new Date();
 let activeDay;
 let month = today.getMonth();
 let year = today.getFullYear();
+const todayDay = today.getDate()
+let lat
+let lon
 
 const months = [
   "January",
@@ -147,7 +151,16 @@ function addListner() {
     day.addEventListener("click", (e) => {
       getActiveDay(e.target.innerHTML);
       updateEvents(Number(e.target.innerHTML));
+
       activeDay = Number(e.target.innerHTML);
+      const daysOut = activeDay - todayDay
+      if(daysOut >= 0 && daysOut <= 5) {
+        getWeather(lat, lon, daysOut)
+        weatherBox.style.display = "block";
+      } else {
+        //Hide the weather Box
+        weatherBox.style.display = "none";
+      }
       // remove active
       days.forEach((day) => {
         day.classList.remove("active");
@@ -194,6 +207,8 @@ todayBtn.addEventListener("click", () => {
   month = today.getMonth();
   year = today.getFullYear();
   initCalendar();
+  getWeather(lat, lon)
+  weatherBox.style.display = "block";
 });
 
 dateInput.addEventListener("input", (e) => {
@@ -246,7 +261,7 @@ function updateEvents(date) {
       year === event.year
     ) {
       event.events.forEach((event) => {
-        events += `<div class="event">
+        events += `<div class="event" id="${event.id}">
             <div class="title">
               <i class="fas fa-circle"></i>
               <h3 class="event-title">${event.title}</h3>
@@ -429,6 +444,7 @@ eventsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("event")) {
     if (confirm("Are you sure you want to delete this event?")) {
       const eventTitle = e.target.children[0].children[1].innerHTML;
+      const eventId = parseInt(e.target.id);
       eventsArr.forEach((event) => {
         if (
           event.day === activeDay &&
@@ -436,10 +452,16 @@ eventsContainer.addEventListener("click", (e) => {
           event.year === year
         ) {
           event.events.forEach((item, index) => {
-            if (item.title === eventTitle) {
+            debugger
+            console.log('Inside event loop')
+            if (item.id === eventId) {
               event.events.splice(index, 1);
+              console.log(event.events)
             }
           });
+          fetch(`/api/events/${eventId}`, {
+            method: "DELETE"
+          })
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);
@@ -505,7 +527,6 @@ const weatherImg = document.querySelector("#weather-img");
 const weatherInfoEl = document.querySelector(".weather-info");
 const childrenElements = weatherInfoEl.querySelectorAll("*");
 
-
 // Function calls API to retrieve cordinates (longitude and latitude) based of the input/argument of location parameter, then invokes getWeather function
 function generateWeather(location) {
   let geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&appid=${apiKey}&limit=1`;
@@ -514,12 +535,12 @@ function generateWeather(location) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      let lat = data[0].lat; // retrieves latitude
-      let lon = data[0].lon; // retrieves longitude
-      let location = data[0].name; // retrieves location's name
+      lat = data[0].lat; // retrieves latitude
+      lon = data[0].lon; // retrieves longitude
+      location = data[0].name; // retrieves location's name
 
       // Inserts created variables as arguments for function
-      getWeather(lat, lon, location);
+      getWeather(lat, lon);
     });
 }
 
@@ -527,14 +548,74 @@ function generateWeather(location) {
 generateWeather(cityName);
 
 // Function invoked to fetch weather for 5 days
-function getWeather(lat, lon, location) {
+function getWeather(lat, lon, daysOut = 0) {
   // URL used to fetch weather for current date and time
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`;
+  let weatherUrl = (daysOut > 0 && daysOut <= 5) ? `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d08a795d9cdd7f108bc04f749cd0193c&units=imperial&units=imperial` 
+  : `https://api.openweathermap.org/data/2.5/weather?lat=33.7489924&lon=-84.3902644&units=imperial&appid=${apiKey}`;
 
-  fetch(weatherUrl)
+  if(daysOut > 0 && daysOut <= 5) {
+    fetch(weatherUrl).then(response => response.json()).then(data => {
+      let firstDayWeahterIndex
+      let desiredDaysWeatherIndex
+        const firstDayWeather = data.list.find((weather,i ) => {
+          if(weather.dt_txt.split(' ')[1] === '12:00:00'){
+            firstDayWeahterIndex = i
+            return true
+          }
+        })
+        if(daysOut === 1){
+          //Populate with the firstDayWeather
+          //Captures Data for weather
+          let weather = firstDayWeather.weather[0];
+          let main = firstDayWeather.main;
+          console.log(weather);
+          console.log(main);
+          let icon = weather.icon;
+          let weatherDescription = weather.description;
+
+          // Grabs icon of the weather for the "Present Day" and places it in img tag 
+          weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
+          // Declares values from API to variables
+          let temp = main.temp; // Tempature
+          let wind = firstDayWeather.wind.speed; // Wind Speed
+          let humid = main.humidity;// Humidity
+
+          // Places values from API to DOM
+          childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+          childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+          childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+        } else {
+          desiredDaysWeatherIndex = firstDayWeahterIndex + ((daysOut - 1) * 8)
+          const desiredDayWeather = data.list[desiredDaysWeatherIndex]
+          let weather = desiredDayWeather.weather[0];
+          let main = desiredDayWeather.main;
+          console.log(weather);
+          console.log(main);
+          let icon = weather.icon;
+          let weatherDescription = weather.description;
+
+          // Grabs icon of the weather for the "Present Day" and places it in img tag 
+          weatherImg.setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
+          // Declares values from API to variables
+          let temp = main.temp; // Tempature
+          let wind = desiredDayWeather.wind.speed; // Wind Speed
+          let humid = main.humidity;// Humidity
+
+          // Places values from API to DOM
+          childrenElements[0].innerHTML = `Temperature: ${temp} °F | ${weatherDescription}`;
+          childrenElements[1].innerHTML = `Wind: ${wind} MPH`;
+          childrenElements[2].innerHTML = `Humidity: ${humid}%`;
+
+        }
+    })
+  } else {
+    fetch(weatherUrl)
     .then(response => response.json())
     .then(data => {
-      // Captures Data for weather
+      
+      //Captures Data for weather
       let weather = data.weather[0];
       let main = data.main;
       console.log(weather);
@@ -556,6 +637,7 @@ function getWeather(lat, lon, location) {
       childrenElements[2].innerHTML = `Humidity: ${humid}%`;
 
     });
+  }
 }
 
 // EVERYTHING UNDER HERE IS THE IMG GENERATORFUNCTION/API CALL
