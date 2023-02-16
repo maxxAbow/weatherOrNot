@@ -315,6 +315,7 @@ body {
   /* width: 60%; */
   border-radius: 10px;
   margin: 0 auto;
+  margin-bottom: 15px;
   padding: 10px;
   text-align: center;
 }
@@ -631,7 +632,7 @@ body {
 
   .today-weather::before,
   .today-weather::after {
-    top: 44.95%;
+    top: 44.1%;
     left: 50%;
     width: 75.5%;
     height: 12px;
@@ -641,7 +642,7 @@ body {
 
   .today-weather::before {
     width: 72%;
-    top: 46.48%;
+    top: 45.48%;
   }
 
   .events {
