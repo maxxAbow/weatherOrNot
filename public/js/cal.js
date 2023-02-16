@@ -124,7 +124,7 @@ function initCalendar() {
   }
   // days variable is built up by prev code, inserted as the innerHTML of the daysContainer element
   daysContainer.innerHTML = days;
-  addListner(); // function called, adds event listeners to the newly created day elements
+  addListener(); // function called, adds event listeners to the newly created day elements
 }
 // !=====================================================
 // function to sub/add month & year on prev & next button
@@ -150,18 +150,17 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth); // id="prev"
 next.addEventListener("click", nextMonth); // id="next"
 // !===================================================
-const refreshCal = () => {
-  getEvents() // function retrieves list of events
-    .then(() => { // chained onto getEvents() function call. takes function as arg, executed once function has completed its work
-      console.log(eventsArr); // logs value to console
-      initCalendar(); // updates calendar display
-    });
+const refreshCal = () => {getEvents() // function retrieves list of events
+.then(() => { // chained onto getEvents() function call. takes function as arg, executed once function has completed its work
+  console.log(eventsArr) // logs value to console
+  initCalendar() // updates calendar display
+})
 };
 // !============================
 refreshCal();
 // function to add active on day
 function addListner() {
-
+  
   const days = document.querySelectorAll(".day"); // selects all elements with the day class and stores them in the days var
   // iterates through each element in the days collection and adds an event listener to it
   days.forEach((day) => {
@@ -175,19 +174,17 @@ function addListner() {
         getWeather(lat, lon, daysOut); // represent user's current latitude and longitude, used to retrieve the weather forecast from an API
         weatherBox.style.display = "block"; // shows weather box
       } else { // hides weather box if selected day is more than 5 days in the future
-        //Hide the weather Box
         weatherBox.style.display = "none"; // hides weather box
       }
-      // remove active
       days.forEach((day) => { // removes the active class from all date cells in the calendar
         day.classList.remove("active"); // removes active class
       });
       // if clicked prev-date or next-date switch to that month
       if (e.target.classList.contains("prev-date")) { // updates the calendar to show the previous month if user clicks on a date cell that represents a day in the prev month.
         prevMonth(); // updates the calendar, then a new event listener is added to clicked date cell to ensure that it becomes active
-        // add active to clicked day afte month is change
+        // add active to clicked day after month is change
         setTimeout(() => { // timeout
-          // add active where no prev-date or next-date
+          // add active where there is no prev-date or next-date
           const days = document.querySelectorAll(".day");
           days.forEach((day) => {
             if (
@@ -270,7 +267,7 @@ function gotoDate() {
 // !===============================================================================================================================
 // function get active day day name and date and update eventday eventdate
 // takes the date arg and updates the content of the HTML elements with IDs 'eventDay' and 'eventDate' to reflect the selected date
-function getActiveDay(date) {
+function getActiveDay(date) { //
   const day = new Date(year, month, date); // new 'Date' object using year, month, and date vars
   // calls the 'toString' method on 'day' object to get a string representation of the day, which includes the day of the week
   // splits the resulting string on the space character to get an array of words
@@ -282,7 +279,7 @@ function getActiveDay(date) {
 // function update events when a day is active
 // function takes the date as input and updates the events displayed on the calendar for that date
 function updateEvents(date) {
-  // debugger
+
   let events = "";
   eventsArr.forEach((event) => { // loops through array to find events that match the given date
     if ( // if any found, it generates HTML markup for each event and adds it to a string called 'events'
@@ -310,6 +307,7 @@ function updateEvents(date) {
   }
   eventsContainer.innerHTML = events; // generates eventsContainer element with the generated HTML markup
   // saveEvents(); // calls the saveEvents function to save the events to local storage
+
 }
 // !=====================================================================================================
 
@@ -334,6 +332,7 @@ addEventTitle.addEventListener("input", (e) => {
 });
 
 // function to add event to eventsArr
+
 addEventSubmit.addEventListener("click", async (e) => {
   e.preventDefault();
   const eventTitleValue = addEventTitle.value;
@@ -358,7 +357,7 @@ addEventSubmit.addEventListener("click", async (e) => {
   ) {
     alert("Invalid Time Format");
     return;
-  }
+  }  
 
   // check if event is already added
   let eventExist = false;
@@ -394,9 +393,11 @@ addEventSubmit.addEventListener("click", async (e) => {
       eventDescription: eventDescriptionValue,
       userId: userId
     })
-  });
+
+  })
   //Closes addEvent Form when button is clicked
   const closeAddEventForm = await addEventWrapper.classList.remove("active");
+
 
   //Refreshes calendar to show newly created events in calendar
   refreshCal();
@@ -415,7 +416,9 @@ eventsContainer.addEventListener("click", (e) => {
           event.year === year
         ) {
           event.events.forEach((item, index) => {
-            console.log('Inside event loop');
+
+            console.log('Inside event loop')
+
             if (item.id === eventId) {
               event.events.splice(index, 1);
               console.log(event.events);
@@ -423,8 +426,8 @@ eventsContainer.addEventListener("click", (e) => {
           });
           fetch(`/api/events/${eventId}`, {
             method: "DELETE"
-          });
-
+          })
+          
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);
@@ -458,8 +461,10 @@ async function getEvents() {
     headers: {
       'Content-Type': 'application/json'
     }
-  });
-  const parsedArray = await response.json();
+
+  })
+  const parsedArray = await response.json()
+  
 
   //Instead of pushing the local storage events, push the response from the events api call
   eventsArr = parsedArray;
