@@ -17,7 +17,7 @@
 </p>
 
 ## Description
-A simple scheduler web application with weather information on the daily.
+A scheduler web application with the weekly weather forecast.
 
 ## Table of Contents
 
@@ -36,11 +36,7 @@ Follow these commands to run the command line application:
 
 ## Usage
 
-
-
   ![Usage](assets/images/screenshot.png)
-
-    
 
 ## Credits
 
@@ -73,7 +69,9 @@ Follow these commands to run the command line application:
 
 ## Toolset
 
-<p align="center"><img src="https://img.shields.io/badge/-HTML-grey?style=for-the-badge"  alt="HTML" />
+<p align="center">
+
+      <img src="https://img.shields.io/badge/-HTML-grey?style=for-the-badge"  alt="HTML" />
       <img src="https://img.shields.io/badge/-CSS-grey?style=for-the-badge"  alt="CSS" />
       <img src="https://img.shields.io/badge/-Bootstrap-grey?style=for-the-badge"  alt="Bootstrap" />
       <img src="https://img.shields.io/badge/-JavaScript-grey?style=for-the-badge"  alt="JavaScript" />
@@ -98,6 +96,4 @@ Follow these commands to run the command line application:
 
 ## Questions
 
-Have Questions?
-<br>
-Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
+*Have Questions?* Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
