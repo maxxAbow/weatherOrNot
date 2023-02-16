@@ -19,9 +19,9 @@ events.get('/:userId', async (req,res) => {
             twelveHourFormat = `${hoursAndMinutes[0]}:${hoursAndMinutes[1]} AM`
         }
         if(!todaysEvents){
-            groupedEventsObject[event.eventDate] = [{title: event.eventName, time: twelveHourFormat}]
+            groupedEventsObject[event.eventDate] = [{title: event.eventName, time: twelveHourFormat, id: event.id}]
         } else {
-            groupedEventsObject[event.eventDate].push({title: event.eventName, time: twelveHourFormat})
+            groupedEventsObject[event.eventDate].push({title: event.eventName, time: twelveHourFormat, id: event.id})
         }
     })
     const finalEventStructure = []
@@ -61,6 +61,24 @@ events.get('/:eventId', async (req,res) => {
             const foundEvent = await Events.findOne({ where: { id: eventId } });
             if(foundEvent){
                 res.json(foundEvent)
+            } else {
+                res.status(404).send()
+            }
+        } catch (error) {
+            res.status(500).send()   
+        }    
+    } else {
+        res.status(400).send()
+    }
+})
+
+events.delete('/:eventId', async (req,res) => {
+    const {eventId} = req.params
+    if(eventId){
+        try {
+            const deletedEvent = await Events.destroy({ where: { id: eventId } });
+            if(deletedEvent){
+                res.status(200).send()
             } else {
                 res.status(404).send()
             }

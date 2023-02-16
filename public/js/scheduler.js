@@ -246,7 +246,7 @@ function updateEvents(date) {
       year === event.year
     ) {
       event.events.forEach((event) => {
-        events += `<div class="event">
+        events += `<div class="event" id="${event.id}">
             <div class="title">
               <i class="fas fa-circle"></i>
               <h3 class="event-title">${event.title}</h3>
@@ -429,6 +429,7 @@ eventsContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("event")) {
     if (confirm("Are you sure you want to delete this event?")) {
       const eventTitle = e.target.children[0].children[1].innerHTML;
+      const eventId = parseInt(e.target.id);
       eventsArr.forEach((event) => {
         if (
           event.day === activeDay &&
@@ -436,10 +437,16 @@ eventsContainer.addEventListener("click", (e) => {
           event.year === year
         ) {
           event.events.forEach((item, index) => {
-            if (item.title === eventTitle) {
+            debugger
+            console.log('Inside event loop')
+            if (item.id === eventId) {
               event.events.splice(index, 1);
+              console.log(event.events)
             }
           });
+          fetch(`/api/events/${eventId}`, {
+            method: "DELETE"
+          })
           //if no events left in a day then remove that day from eventsArr
           if (event.events.length === 0) {
             eventsArr.splice(eventsArr.indexOf(event), 1);
