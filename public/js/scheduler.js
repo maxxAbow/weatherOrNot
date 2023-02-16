@@ -21,14 +21,14 @@ const addEventLocation = document.querySelector(".event-location"); // class
 const addEventDescription = document.querySelector(".event-description"); // class
 const addEventSubmit = document.querySelector(".add-event-btn "); // class
 const weatherBox = document.querySelector('#weather-box'); // id
-// !================================================================
+// !==================================================================================================================
 // retrieves data from local storage and parsing it into a JS object
 const activeUserStorage = localStorage.getItem('activeUser'); // retrieves value associated with the key -> activeUser
 const activeUser = JSON.parse(activeUserStorage); // parses the string into a JS object
 // extracts the values of two properties from the activeUser object: 'displayName' and 'userId'
 const displayName = activeUser.displayName;
 const userId = activeUser.userId;
-// !====================================================================================================================================
+// !===========================================================================================================================
 // date objects
 let today = new Date(); // creates a new Date object & assigns to the variable today
 let activeDay; // new var called activeDay but does not assign it a value
@@ -59,7 +59,7 @@ const months = [
 let eventsArr = []; // declaring var eventsArr, initializes it to an empty array
 // getEvents();
 console.log(eventsArr); // logging the eventsArr to the console
-// !===========================================================
+// !=========================================================================================================================
 // function add days in days with class day and prev-date next-date on previous month and next month days and active on today
 // intializes and displays the calendar for the current month and year
 // creates date objects for first day, last day, and prev and next days displayed on the calendar
@@ -171,21 +171,19 @@ function addListener() {
       const daysOut = activeDay - todayDay; // calculates the # of days between the selected day and the current day
       if (daysOut >= 0 && daysOut <= 5) { // displays a weather box if the selected day is within the next 5 days
         getWeather(lat, lon, daysOut); // represent user's current latitude and longitude, used to retrieve the weather forecast from an API
-        weatherBox.style.display = "block";
-      } else {
-        // hides the weather Box
-        weatherBox.style.display = "none";
+        weatherBox.style.display = "block"; // shows weather box
+      } else { // hides weather box if selected day is more than 5 days in the future
+        weatherBox.style.display = "none"; // hides weather box
       }
-      // removes active
-      days.forEach((day) => {
-        day.classList.remove("active");
+      days.forEach((day) => { // removes the active class from all date cells in the calendar
+        day.classList.remove("active");// removes active class
       });
       // if clicked prev-date or next-date switch to that month
-      if (e.target.classList.contains("prev-date")) {
-        prevMonth();
-        // add active to clicked day afte month is change
-        setTimeout(() => {
-          // add active where no prev-date or next-date
+      if (e.target.classList.contains("prev-date")) { // updates the calendar to show the previous month if user clicks on a date cell that represents a day in the prev month.
+        prevMonth(); // updates the calendar, then a new event listener is added to clicked date cell to ensure that it becomes active
+        // add active to clicked day after month is change
+        setTimeout(() => { // timeout
+          // add active where there is no prev-date or next-date
           const days = document.querySelectorAll(".day");
           days.forEach((day) => {
             if (
@@ -196,8 +194,8 @@ function addListener() {
             }
           });
         }, 100);
-      } else if (e.target.classList.contains("next-date")) {
-        nextMonth();
+      } else if (e.target.classList.contains("next-date")) { // updates calendar to show next month if user clicks on date cell that represents a day in the next month
+        nextMonth(); // called to update the calendar, then new event listener is added to the clicked date to ensure that it becomes active
         // add active to clicked day afte month is changed
         setTimeout(() => {
           const days = document.querySelectorAll(".day");
@@ -216,7 +214,12 @@ function addListener() {
     });
   });
 }
-
+// !=====================================================
+// adds a click event listener to the today button. 
+// when clicked, 
+// it sets date to the current date, 
+// updates the calendar to show the current month, 
+// and retrieves the weather forecast for the current day
 todayBtn.addEventListener("click", () => {
   today = new Date();
   month = today.getMonth();
@@ -225,52 +228,60 @@ todayBtn.addEventListener("click", () => {
   getWeather(lat, lon);
   weatherBox.style.display = "block";
 });
-
-dateInput.addEventListener("input", (e) => {
-  dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
-  if (dateInput.value.length === 2) {
+// !========================================================
+// adds input event listener to date input field
+// when user types or deletes text in the input field,
+// the listener function performs several actions to format the date input
+dateInput.addEventListener("input", (e) => { // adds input event listener to 'dateInput' field
+  dateInput.value = dateInput.value.replace(/[^0-9/]/g, ""); // replaces any non-numeric or non-slash characters in the input value with an empty string
+  if (dateInput.value.length === 2) { // adds slash character after second digit of input value. enforces a 'MM/DD/YYYY' format
     dateInput.value += "/";
   }
-  if (dateInput.value.length > 7) {
+  if (dateInput.value.length > 7) { // limits length of input value to 7 chars
     dateInput.value = dateInput.value.slice(0, 7);
   }
-  if (e.inputType === "deleteContentBackward") {
-    if (dateInput.value.length === 3) {
+  if (e.inputType === "deleteContentBackward") { // checks if the user has deleted text using the backspace or delete key
+    if (dateInput.value.length === 3) { // if so this removes the slash char if the user deletes the day digit before the slash, ensures the same format
       dateInput.value = dateInput.value.slice(0, 2);
     }
   }
 });
-
+// adds an event listener to a button element with id gotoBtn, when clicked gotoDate function is called
 gotoBtn.addEventListener("click", gotoDate);
-
+// !===================================================================================================
+// function called when the button gotoBtn is clicked
 function gotoDate() {
   console.log("here");
-  const dateArr = dateInput.value.split("/");
-  if (dateArr.length === 2) {
-    if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
-      month = dateArr[0] - 1;
-      year = dateArr[1];
-      initCalendar();
+  const dateArr = dateInput.value.split("/"); // splits dateInput field by the / char and assigns the resulting array to 'dateArr'
+  if (dateArr.length === 2) { // checks if length is strictly equal to 2
+    if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) { // checks if first element of 'dateArr' is a number between 1 & 12, and if second element has a length of 4
+      month = dateArr[0] - 1; // sets month var to value of first element minus 1 (since getMonth() returns a zero-indexed month)
+      year = dateArr[1]; // sets year variable to the value of the second element of 'dateArr'
+      initCalendar(); // updates the calendar display with the new month and year
       return;
     }
   }
-  alert("Invalid Date");
+  alert("Invalid Date"); // if any previous condition is not met, it displays an alert w/ message
 }
-
+// !===============================================================================================================================
 // function get active day day name and date and update eventday eventdate
-function getActiveDay(date) {
-  const day = new Date(year, month, date);
-  const dayName = day.toString().split(" ")[0];
-  eventDay.innerHTML = dayName;
-  eventDate.innerHTML = date + " " + months[month] + " " + year;
+// takes the date arg and updates the content of the HTML elements with IDs 'eventDay' and 'eventDate' to reflect the selected date
+function getActiveDay(date) { //
+  const day = new Date(year, month, date); // new 'Date' object using year, month, and date vars
+  // calls the 'toString' method on 'day' object to get a string representation of the day, which includes the day of the week
+  // splits the resulting string on the space character to get an array of words
+  const dayName = day.toString().split(" ")[0]; // accesses 1st element of the resulting array and assigns to 'dayName' var
+  eventDay.innerHTML = dayName; // sets innerHTML of element to 'dayName' var
+  eventDate.innerHTML = date + " " + months[month] + " " + year; // sets innerHTML of element to string that concatenates 'date', name of the month, and the 'year' variable
 }
-
+// !========================================================================================================================================================================
 // function update events when a day is active
 // debugger
+// function takes the date as input and updates the events displayed on the calendar for that date
 function updateEvents(date) {
   let events = "";
-  eventsArr.forEach((event) => {
-    if (
+  eventsArr.forEach((event) => { // loops through array to find events that match the given date
+    if ( // if any found, it generates HTML markup for each event and adds it to a string called 'events'
       date === event.day &&
       month + 1 === event.month &&
       year === event.year
@@ -288,14 +299,15 @@ function updateEvents(date) {
       });
     }
   });
-  if (events === "") {
+  if (events === "") { // if no events found, it displays message "No Events"
     events = `<div class="no-event">
             <h3>No Events</h3>
         </div>`;
   }
-  eventsContainer.innerHTML = events;
-  saveEvents();
+  eventsContainer.innerHTML = events; // generates eventsContainer element with the generated HTML markup
+  saveEvents(); // calls the saveEvents function to save the events to local storage
 }
+// !=====================================================================================================
 
 // function to add event
 addEventBtn.addEventListener("click", () => {
@@ -339,6 +351,7 @@ addEventTitle.addEventListener("input", (e) => {
 // });
 
 // function to add event to eventsArr
+
 addEventSubmit.addEventListener("click", async (e) => {
   e.preventDefault();
   const eventTitleValue = addEventTitle.value;
