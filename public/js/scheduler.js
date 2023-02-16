@@ -44,9 +44,9 @@ const months = [
   "December",
 ];
 
-//const eventsArr = [{day: 15, month: 2, year: 2023}];
-const eventsArr = []
-getEvents();
+// let eventsArr = [{day: 15, month: 02, year: 2023, events: [{title: "Hello", time: "05:00"}]}]
+let eventsArr = [];
+// getEvents();
 console.log(eventsArr);
 
 // function add days in days with class day and prev-date next-date on previous month and next month days and active on today
@@ -71,6 +71,9 @@ function initCalendar() {
     // check if event is present on that day
     let event = false;
     eventsArr.forEach((eventObj) => {
+      console.log(eventObj)
+      console.log(typeof eventObj.day)
+      console.log(typeof i)
       if (
         eventObj.day === i &&
         eventObj.month === month + 1 &&
@@ -130,7 +133,12 @@ function nextMonth() {
 prev.addEventListener("click", prevMonth);
 next.addEventListener("click", nextMonth);
 
-initCalendar();
+getEvents()
+.then(() => { 
+  console.log(eventsArr)
+  initCalendar()
+})
+;
 
 // function to add active on day
 function addListner() {
@@ -228,6 +236,7 @@ function getActiveDay(date) {
 }
 
 // function update events when a day is active
+// debugger
 function updateEvents(date) {
   let events = "";
   eventsArr.forEach((event) => {
@@ -454,13 +463,25 @@ function saveEvents() {
 
 // function to get events from local storage
 // THIS EVENT SHOULD RETRIEVE EVENTS FROM EVENTS.JS MODEL
-function getEvents() {
+
+async function getEvents() {
   //check if events are already saved in local storage then return event else nothing
   //TODO: Get events from database instead of local storage
-  if (localStorage.getItem("events") === null) {
-    return;
-  }
-  eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+  // if (localStorage.getItem("events") === null) {
+  //   return;
+  // }
+
+  const response = await fetch(`/api/events/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const parsedArray = await response.json()
+  // debugger
+  //Instead of pushing the local storage events, push the response from the events api call
+  eventsArr = parsedArray;
+  
 }
 
 function convertTime(time) {
