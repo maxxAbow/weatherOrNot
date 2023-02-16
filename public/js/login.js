@@ -46,6 +46,7 @@ signInButton.addEventListener('click', async (e) => {
 
 signUpButton.addEventListener('click', async (e) => {
   e.preventDefault()
+  
   const emailInputValue = signUpEmailInput.value
   const passwordInputValue = signUpPasswordInput.value
   const displayNameValue = displayNameInput.value
