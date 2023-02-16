@@ -1,4 +1,5 @@
 const events = require('express').Router();
+const Events = require('../../models/events');
 const Event = require('../../models/events');
 
 events.get('/', async (req,res) => {
@@ -25,23 +26,23 @@ events.post('/', async (req,res) => {
    }   
 })
 
-// events.get('/:eventId', async (req,res) => {
-//     const {eventId} = req.params
-//     if(eventId){
-//         try {
-//             const foundUser = await User.findOne({ where: { eventId } });
-//             if(foundUser){
-//                 res.json(foundUser)
-//             } else {
-//                 res.status(404).send()
-//             }
-//         } catch (error) {
-//             res.status(500).send()   
-//         }    
-//     } else {
-//         res.status(400).send()
-//     }
-// })
+events.get('/:eventId', async (req,res) => {
+    const {eventId} = req.params
+    if(eventId){
+        try {
+            const foundEvent = await Events.findOne({ where: { id: eventId } });
+            if(foundEvent){
+                res.json(foundEvent)
+            } else {
+                res.status(404).send()
+            }
+        } catch (error) {
+            res.status(500).send()   
+        }    
+    } else {
+        res.status(400).send()
+    }
+})
 
 
 module.exports = events;
