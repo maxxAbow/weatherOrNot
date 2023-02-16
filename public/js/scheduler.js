@@ -43,6 +43,7 @@ console.log(eventsArr);
 
 // function add days in days with class day and prev-date next-date on previous month and next month days and active on today
 function initCalendar() {
+  // to get prev month days and current month all days and rem next month days
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const prevLastDay = new Date(year, month, 0);
@@ -50,17 +51,17 @@ function initCalendar() {
   const lastDate = lastDay.getDate();
   const day = firstDay.getDay();
   const nextDays = 7 - lastDay.getDay() - 1;
-
+  // update date top of calendar
   date.innerHTML = months[month] + " " + year;
-
+  // adding days on dom
   let days = "";
-
+  // prev month days
   for (let x = day; x > 0; x--) {
     days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
   }
-
+  // current month days
   for (let i = 1; i <= lastDate; i++) {
-    // check if event is present on that day
+    // if day is today add class today
     let event = false;
     eventsArr.forEach((eventObj) => {
       if (
@@ -71,6 +72,7 @@ function initCalendar() {
         event = true;
       }
     });
+    // if day is today add class today
     if (
       i === new Date().getDate() &&
       year === new Date().getFullYear() &&
@@ -90,9 +92,10 @@ function initCalendar() {
       } else {
         days += `<div class="day ">${i}</div>`;
       }
+      // add remaining as it is
     }
   }
-
+  // next month days
   for (let j = 1; j <= nextDays; j++) {
     days += `<div class="day next-date">${j}</div>`;
   }
@@ -173,6 +176,8 @@ function addListner() {
   });
 }
 
+// add goto date and goto today functionality
+
 todayBtn.addEventListener("click", () => {
   today = new Date();
   month = today.getMonth();
@@ -181,13 +186,18 @@ todayBtn.addEventListener("click", () => {
 });
 
 dateInput.addEventListener("input", (e) => {
+  // allow only numbers remove anything else
   dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
   if (dateInput.value.length === 2) {
+    // add a slash if two numbers entered
     dateInput.value += "/";
   }
   if (dateInput.value.length > 7) {
+    // don't allow more than 7 character
     dateInput.value = dateInput.value.slice(0, 7);
   }
+  // if we remove until slash its not removing
+  // if backspace pressed
   if (e.inputType === "deleteContentBackward") {
     if (dateInput.value.length === 3) {
       dateInput.value = dateInput.value.slice(0, 2);
@@ -197,9 +207,11 @@ dateInput.addEventListener("input", (e) => {
 
 gotoBtn.addEventListener("click", gotoDate);
 
+// function to go to entered date
 function gotoDate() {
   console.log("here");
   const dateArr = dateInput.value.split("/");
+  // some date validation
   if (dateArr.length === 2) {
     if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
       month = dateArr[0] - 1;
@@ -208,6 +220,7 @@ function gotoDate() {
       return;
     }
   }
+  // if invalid date
   alert("Invalid Date");
 }
 
