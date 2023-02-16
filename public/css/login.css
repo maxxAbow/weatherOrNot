@@ -7,47 +7,52 @@
 /* Option to choose either or Transition upon page load */
 @keyframes transitionInX {
   from {
-      opacity: 0;
-      transform: rotateX(-10deg);
+    opacity: 0;
+    transform: rotateX(-10deg);
   }
 
   to {
-      opacity: 1;
-      transform: rotateX(0);
+    opacity: 1;
+    transform: rotateX(0);
   }
 }
 
 /* Option to choose either or Transition upon page load */
 @keyframes transitionInY {
   from {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
 
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes animate-background{
+@keyframes animate-background {
   0% {
-      background-image: url(../images/login-images/image3.jpg) ;
+    background-image: url(../images/login-images/image3.jpg);
   }
+
   20% {
-      background-image: url(../images/login-images/image2.jpg) ;
+    background-image: url(../images/login-images/image2.jpg);
   }
+
   40% {
-      background-image: url(../images/login-images/image4.jpg) ;
+    background-image: url(../images/login-images/image4.jpg);
   }
+
   60% {
-      background-image: url(../images/login-images/image5.jpg) ;
+    background-image: url(../images/login-images/image5.jpg);
   }
+
   80% {
-      background-image: url(../images/login-images/image6.jpg) ;
+    background-image: url(../images/login-images/image6.jpg);
   }
+
   100% {
-      background-image: url(../images/login-images/image1.jpg) ;
+    background-image: url(../images/login-images/image1.jpg);
   }
 }
 
@@ -67,7 +72,6 @@
   font-family: 'Poppins', sans-serif;
   color: var(--black);
   animation: transitionInY 0.75s;
-
 }
 
 body {
@@ -75,20 +79,22 @@ body {
   color: var(--black);
   height: 100vh;
   width: 100%;
-  background-size: cover;
   background-position: center;
+  background-image: url("../images/login-images/image1.jpg"), url("../images/login-images/image2.jpg"), url("../images/login-images/image3.jpg"), url("../images/login-images/image4.jpg"), url("../images/login-images/image5.jpg"), url("../images/login-images/image6.jpg");
   background-repeat: no-repeat;
-  transition: 5s;
-
+  max-width: 100%;
+  max-height: 100%;
+  background-size: cover;
   animation-name: animate-background;
+  animation-duration: 30s;
+  transition: 5s;
   animation-direction: alternate-reverse;
-  animation-duration: 30s ;
-  animation-fill-mode: forwards ;
-  animation-iteration-count: infinite ;
-  animation-play-state: running ;
-  animation-timing-function: ease-in-out ;
-
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out;
 }
+
 .opaque {
   opacity: 0.97;
 }
