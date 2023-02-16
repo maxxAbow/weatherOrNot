@@ -17,7 +17,7 @@
 </p>
 
 ## Description
-Lorem Ipsum
+A simple scheduler web application with weather information on the daily.
 
 ## Table of Contents
 
@@ -95,10 +95,6 @@ Follow these commands to run the command line application:
 ## Contribute
 
 [Contributor Covenant](https://www.contributor-covenant.org/)
-
-## Tests
-
-n/a
 
 ## Questions
 
