@@ -1,5 +1,6 @@
 const users = require('express').Router();
 const User = require('../../models/users')
+const Events = require('../../models/events')
 const {v4: uuidv4} = require('uuid')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -62,7 +63,7 @@ users.post('/login', async (req,res) => {
         try {
             const foundUser = await User.findOne({ where: { emailAddress } });
             if(!foundUser) {
-                res.status(404).send()
+                res.status(404).send('Incorrect email')
                 return
             }
             const {emailAddress: userEmailAddress, displayName, userId, createDate} = foundUser

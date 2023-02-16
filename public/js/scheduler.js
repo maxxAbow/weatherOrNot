@@ -19,6 +19,11 @@ const addEventLocation = document.querySelector(".event-location");
 const addEventDescription = document.querySelector(".event-description");
 const addEventSubmit = document.querySelector(".add-event-btn ");
 
+const activeUserStorage = localStorage.getItem('activeUser');
+const activeUser = JSON.parse(activeUserStorage);
+const displayName = activeUser.displayName;
+const userId = activeUser.userId;
+
 let today = new Date();
 let activeDay;
 let month = today.getMonth();
@@ -39,7 +44,8 @@ const months = [
   "December",
 ];
 
-const eventsArr = [];
+//const eventsArr = [{day: 15, month: 2, year: 2023}];
+const eventsArr = []
 getEvents();
 console.log(eventsArr);
 
@@ -296,21 +302,21 @@ addEventTitle.addEventListener("input", (e) => {
 // function to add event to eventsArr
 addEventSubmit.addEventListener("click", async (e) => {
   e.preventDefault()
-  const eventTitle = addEventTitle.value;
-  const eventDate = addEventDate.value;
-  const eventTime = addEventTime.value;
-  const eventLocation = addEventLocation.value;
-  const eventDescription = addEventDescription.value;
-  console.log([eventTitle, eventDate, eventTime, eventLocation, eventDescription])
-
+  const eventTitleValue = addEventTitle.value;
+  const eventDateValue = addEventDate.value;
+  const eventTimeValue = addEventTime.value;
+  const eventLocationValue = addEventLocation.value;
+  const eventDescriptionValue = addEventDescription.value;
+  console.log([eventTitleValue, eventDateValue, eventTimeValue, eventLocationValue,eventDescriptionValue, userId])
+  
   // checks for if there are any empty fields being submitted
-  if (eventTitle === "" || eventDate === "" || eventTime === "" || eventLocation === "" || eventDescription === "") {
+  if (eventTitleValue === "" || eventDateValue === "" || eventTimeValue === "" || eventLocationValue === "" ||eventDescriptionValue === "") {
     alert("Please fill all the fields");
     return;
   }
 
   // check correct time format 24 hour
-  const timeArr = eventTime.split(":");
+  const timeArr = eventTimeValue.split(":");
   if (
     timeArr.length !== 2 ||
     timeArr[0] > 23 ||
@@ -321,7 +327,7 @@ addEventSubmit.addEventListener("click", async (e) => {
   }
 
   // DONT NEED TO CONVERT TIME, IT IS ALREADY FORMATED
-  // const time = convertTime(eventTime);
+  // const time = convertTime(eventTimeValue);
   // console.log(time)
 
   // check if event is already added
@@ -333,7 +339,7 @@ addEventSubmit.addEventListener("click", async (e) => {
       event.year === year
     ) {
       event.events.forEach((event) => {
-        if (event.title === eventTitle) {
+        if (event.title === eventTitleValue) {
           eventExist = true;
         }
       });
@@ -351,16 +357,21 @@ addEventSubmit.addEventListener("click", async (e) => {
     },
     body: JSON.stringify({
       // INSERT VALUES FROM FORM BELOW
-    
+      eventName:eventTitleValue,
+      eventDate:eventDateValue,
+      eventTime:eventTimeValue,
+      eventLocation:eventLocationValue,
+      eventDescription:eventDescriptionValue,
+      userId: userId
     })
   })
-  const parsedResponse = await response.json()
+  // const parsedResponse = await response.json()
   // localStorage.setItem('activeUser', JSON.stringify(parsedResponse))
   // window.location.replace('/scheduler')
 //----------Apply fetch above---------------
 
   // const newEvent = {
-  //   title: eventTitle,
+  //   title: eventTitleValue,
   //   time: timeFrom + " - " + timeTo,
   // };
   // console.log(newEvent);
@@ -390,7 +401,7 @@ addEventSubmit.addEventListener("click", async (e) => {
 
   // console.log(eventsArr);
   // addEventWrapper.classList.remove("active");
-  // addEventTitle.value = "";
+  // addeventTitleValue.value = "";
   // addEventFrom.value = "";
   // addEventTo.value = "";
   // updateEvents(activeDay);
@@ -445,6 +456,7 @@ function saveEvents() {
 // THIS EVENT SHOULD RETRIEVE EVENTS FROM EVENTS.JS MODEL
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
+  //TODO: Get events from database instead of local storage
   if (localStorage.getItem("events") === null) {
     return;
   }
@@ -527,21 +539,21 @@ function getWeather(lat, lon, location) {
 
 // EVERYTHING UNDER HERE IS THE IMG GENERATORFUNCTION/API CALL
 // CREATE API CALL FOR UNSPLASH WOHOOO =)
-const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4";
-function generateImg() {
-  // Gets the value of the '.city' class element
-  var city = $(".city")[0].innerText;
+// const unsplashKey = "fDLyIwH2-_UptFzuYMbi8IE0EsrXOD7JWcfncpaoIq4";
+// function generateImg() {
+//   // Gets the value of the '.city' class element
+//   var city = $(".city")[0].innerText;
 
-  // The url the api call, which inputs the 'city' variable as a value for the query key
-  var url = `https://api.unsplash.com/search/photos?query=${city}%20cityscape&per_page=1&order_by&client_id=${unsplashKey}`;
+//   // The url the api call, which inputs the 'city' variable as a value for the query key
+//   var url = `https://api.unsplash.com/search/photos?query=${city}%20cityscape&per_page=1&order_by&client_id=${unsplashKey}`;
 
-  fetch(url)
-    .then(response => {return response.json();})
-    .then((data) => {
-      // Retrieves and stores the url from json image
-      var img = data.results[0].urls.full;
+//   fetch(url)
+//     .then(response => {return response.json();})
+//     .then((data) => {
+//       // Retrieves and stores the url from json image
+//       var img = data.results[0].urls.full;
 
-      // Sets the style for the <main> element to have a background-image property of the url returned from the api call
-      // mainEl.css(`background-image`, `url(${img})`)
-    });
-}
+//       // Sets the style for the <main> element to have a background-image property of the url returned from the api call
+//       // mainEl.css(`background-image`, `url(${img})`)
+//     });
+// }

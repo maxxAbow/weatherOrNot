@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const sequelize = require('./config/connection')
 
 app.use(express.static('public'))
 app.use(express.json());
@@ -23,5 +24,7 @@ app.use('/scheduler', schedulerRouter);
 //Route for API calls
 app.use('/api', apiRouter);
 
-app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`));
+sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log(`Connected via http://localhost:${PORT}`));})
+
 
