@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../public/images/favicons/favicon-calendar.png">
     <!-- FontAwesomeCSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS -->
     <link rel="stylesheet" href="/css/scheduler.css" />
     <title>Scheduler</title>
@@ -51,7 +48,9 @@
           <div class="event-date"></div>
         </div>
         <div class="today-weather" id="weather-box">
-          <div class="city-name"><h1>Atlanta</h1></div>
+          <div class="city-name">
+            <h1>Atlanta</h1>
+          </div>
           <img id="weather-img" src="image.jpg" alt="Image" />
           <div class="weather-info">
             <p id="temp"></p>
@@ -70,38 +69,16 @@
               <input type="text" placeholder="Event Name" class="event-name" />
             </div>
             <div class="add-event-input">
-              <input
-                type="date"
-                id="date"
-                name="date"
-                placeholder="DD/MM/YYYY"
-                pattern="\d{4}-\d{2}-\d{2}"
-                class="add-event-date"
-                required
-              />
+              <input type="date" id="date" name="date" placeholder="DD/MM/YYYY" pattern="\d{4}-\d{2}-\d{2}" class="add-event-date" required />
             </div>
             <div class="add-event-input">
-              <input
-                type="time"
-                id="time-input"
-                name="time-input"
-                class="add-event-time"
-                required
-              />
+              <input type="time" id="time-input" name="time-input" class="add-event-time" required />
             </div>
             <div class="add-event-input">
-              <input
-                type="text"
-                placeholder="Location"
-                class="event-location"
-              />
+              <input type="text" placeholder="Location" class="event-location" />
             </div>
             <div class="add-event-input">
-              <input
-                type="text"
-                placeholder="Description"
-                class="event-description"
-              />
+              <input type="text" placeholder="Description" class="event-description" />
             </div>
           </div>
           <div class="add-event-footer">
@@ -118,4 +95,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="/js/scheduler.js"></script>
   </body>
+
 </html>
