@@ -82,7 +82,7 @@ Follow these commands to run the command line application:
       <img src="https://img.shields.io/badge/-NPM-grey?style=for-the-badge"  alt="NPM" />
       <img src="https://img.shields.io/badge/-Bcrypt-grey?style=for-the-badge"  alt="Bcrypt" />
       <img src="https://img.shields.io/badge/-DotEnv-grey?style=for-the-badge"  alt="DotEnv" />
-      <img src="https://img.shields.io/badge/-Express-grey?style=for-the-badge"  alt="Express" />
+      <img src="https://img.shields.io/badge/-Express-grey?style=for-the-badge"  alt="Express" /><br>
       <img src="https://img.shields.io/badge/-MySQL-grey?style=for-the-badge"  alt="MySQL" />
       <img src="https://img.shields.io/badge/-MySQL2-grey?style=for-the-badge"  alt="MySQL2" />
       <img src="https://img.shields.io/badge/-Sequelize-grey?style=for-the-badge"  alt="Sequelize" />
