@@ -254,7 +254,6 @@ function getActiveDay(date) {
 
 // function update events when a day is active
 function updateEvents(date) {
-  // debugger
 
   let events = "";
   eventsArr.forEach((event) => {
