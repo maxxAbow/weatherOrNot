@@ -96,10 +96,17 @@ Follow these commands to run the command line application:
       
 </p>
 
+## Links
+
+[GitHub](https://github.com/maxxAbow/weatherOrNot)
+<br>
+[Heroku](https://diamonddougs.herokuapp.com)
+
 ## Contribute
 
 [Contributor Covenant](https://www.contributor-covenant.org/)
 
 ## Questions
 
-_Have Questions?_ Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
+
+*Have Questions?* Feel free send us an email or reach out to us on Linkedin.
