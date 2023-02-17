@@ -95,8 +95,9 @@ Follow these commands to run the command line application:
 
 ## Links
 
-![GitHub](https://github.com/maxxAbow/weatherOrNot)
-![Heroku](https://diamonddougs.herokuapp.com)
+[GitHub](https://github.com/maxxAbow/weatherOrNot)
+<br>
+[Heroku](https://diamonddougs.herokuapp.com)
 
 ## Contribute
 
