@@ -12,11 +12,13 @@
 </p>
 
 ## License
+
 <p align = "center">
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-A31F34?style=for-the-badge" alt="MIT License"/></a>
 </p>
 
 ## Description
+
 A calendar web application with the weekly weather forecast.
 
 ## Table of Contents
@@ -29,16 +31,17 @@ A calendar web application with the weekly weather forecast.
 - [Questions](#questions)
 
 ## Installation
-Follow these commands to run the command line application:  
+
+Follow these commands to run the command line application:
 
     npm i
     npm start
 
 ## Usage
 
-  ![Sign In Usage](./public/images/screenshots/signin.png)
-  ![Sign Up Usage](./public/images/screenshots/signup.png)
-  ![Scheduler Usage](./public/images/screenshots/scheduler.png)
+![Sign In Usage](./public/images/screenshots/weatherOrNot-login-page.png)
+![Sign Up Usage](./public/images/screenshots/signup.png)
+![Scheduler Usage](./public/images/screenshots/weatherOrNot-functionality.gif)
 
 ## Credits
 
@@ -99,4 +102,4 @@ Follow these commands to run the command line application:
 
 ## Questions
 
-*Have Questions?* Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
+_Have Questions?_ Feel free send us an [email](mailto:mbowman@welland.com) or reach out to us on [Linkedin](https://www.linkedin.com/in/maxx-abigail-bowman-85b537193/).
