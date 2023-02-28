@@ -124,7 +124,7 @@ function initCalendar() {
   }
   // days variable is built up by prev code, inserted as the innerHTML of the daysContainer element
   daysContainer.innerHTML = days;
-  addListner(); // function called, adds event listeners to the newly created day elements
+  addListener(); // function called, adds event listeners to the newly created day elements
 }
 // !=====================================================
 // function to sub/add month & year on prev & next button
@@ -160,7 +160,7 @@ const refreshCal = () => {
 // !============================
 refreshCal();
 // function to add active on day
-function addListner() {
+function addListener() {
 
   const days = document.querySelectorAll(".day"); // selects all elements with the day class and stores them in the days var
   // iterates through each element in the days collection and adds an event listener to it
